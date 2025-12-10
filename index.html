@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Won | Abundance Not Scarcity</title>
+  <title>We Won</title>
+  <link rel="icon" href="https://gateway.pinata.cloud/ipfs/QmaMTBq3xaZqxW63ynsoA9mCbYWKuRx9S7SXnE4uwVMB2v" type="image/png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
@@ -57,11 +58,10 @@
       width: 34px;
       height: 34px;
       border-radius: 12px;
-      background: linear-gradient(135deg, #58a6ff, #3de1a3);
+      background: rgba(255, 255, 255, 0.08);
       display: grid;
       place-items: center;
-      color: #031522;
-      font-weight: 800;
+      overflow: hidden;
       box-shadow: 0 10px 28px rgba(61, 225, 163, 0.3);
     }
     .nav-links {
@@ -97,16 +97,6 @@
       font-family: "Space Grotesk", "Inter", sans-serif;
     }
     .hero p { margin: 0 0 18px; color: var(--muted); font-size: 17px; }
-    .chip-row { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 14px; }
-    .chip {
-      padding: 6px 12px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid var(--border);
-      color: #e2e8f0;
-      font-size: 12px;
-      letter-spacing: 0.3px;
-    }
     .cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
     .btn {
       padding: 12px 18px;
@@ -183,16 +173,45 @@
       nav { flex-direction: column; align-items: flex-start; gap: 8px; }
       .btn { width: 100%; justify-content: center; }
     }
+    .tabs {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin: 12px 0 20px;
+    }
+    .tab {
+      padding: 10px 14px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.04);
+      color: #e2e8f0;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+    .tab.active {
+      background: linear-gradient(120deg, #58a6ff, #3de1a3);
+      color: #031522;
+      border-color: transparent;
+      box-shadow: 0 10px 26px rgba(88, 166, 255, 0.18);
+    }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+    .logo-img { width: 32px; height: 32px; object-fit: cover; display: block; }
   </style>
 </head>
 <body>
   <header>
     <nav>
-      <div class="brand"><div class="brand-mark">W</div>Won | Abundance Not Scarcity</div>
+      <div class="brand">
+        <div class="brand-mark">
+          <img class="logo-img" src="https://gateway.pinata.cloud/ipfs/QmaMTBq3xaZqxW63ynsoA9mCbYWKuRx9S7SXnE4uwVMB2v" alt="Won logo">
+        </div>
+        Won | Abundance Not Scarcity
+      </div>
       <div class="nav-links">
         <a href="#stablecoin">Stablecoin creation</a>
         <a href="#tokenization">Tokenization</a>
-        <a href="#use-cases">Impact flows</a>
       </div>
     </nav>
   </header>
@@ -200,114 +219,76 @@
   <main>
     <section class="hero" id="top">
       <div>
-        <div class="chip-row">
-          <span class="chip">Impact finance</span>
-          <span class="chip">Carbon vaults</span>
-          <span class="chip">RWA provenance</span>
-          <span class="chip">Automated giving</span>
-        </div>
         <h1>Abundance Not Scarcity</h1>
-        <p>A unified front-end for impact assets: stake carbon credits, tokenize fair-trade projects with live provenance, and route automated donations directly from every transaction.</p>
-        <div class="cta-row">
-          <a class="btn btn-primary" href="#stablecoin">See how the stablecoin works</a>
-          <a class="btn btn-outline" href="#use-cases">Explore use cases</a>
-        </div>
-      </div>
-      <div class="grid">
-        <div class="card">
-          <span class="pill">North Star</span>
-          <h3>Impact liquidity</h3>
-          <p>Direct capital into regenerative assets while tracking climate and social outcomes.</p>
-        </div>
-        <div class="card">
-          <span class="pill">Transparency</span>
-          <h3>On-chain provenance</h3>
-          <p>Dual-layer RWAs keep ownership and mutable field data cleanly separated.</p>
-        </div>
-        <div class="card">
-          <span class="pill">Giving</span>
-          <h3>Built-in tithing</h3>
-          <p>Basis-point donations flow automatically to verified beneficiaries.</p>
-        </div>
+        <p>Won is a stable store of value for impact projects and communities, built to transact with the world while showcasing credible, tokenized outcomes.</p>
       </div>
     </section>
 
-    <section id="stablecoin">
-      <h2>Visual: stablecoin creation</h2>
-      <p class="lede">An impact-backed stablecoin can be spun up without Maker-style collateral complexity—showing the essential path from collateral to impact.</p>
-      <div class="grid">
-        <div class="card flow-step">
-          <h3>1) Choose backing</h3>
-          <p>Select impact tokens (carbon credits), ETH, or stables as reserves.</p>
-        </div>
-        <div class="card flow-step">
-          <h3>2) Mint stablecoin</h3>
-          <p>Lock reserves and mint the stable asset; program basic ratios and ceilings only as needed.</p>
-        </div>
-        <div class="card flow-step">
-          <h3>3) Route impact</h3>
-          <p>Direct minted liquidity into carbon vaults or community pools; track yield and CO₂ offsets.</p>
-        </div>
-        <div class="card flow-step">
-          <h3>4) Rebalance & prove</h3>
-          <p>Periodic rebalances keep backing healthy; dashboards expose reserves, flows, and impacts.</p>
+    <section>
+      <div class="tabs">
+        <button class="tab active" data-tab="stablecoin">Stablecoin creation</button>
+        <button class="tab" data-tab="tokenization">Tokenization</button>
+      </div>
+
+      <div class="tab-content active" id="tab-stablecoin">
+        <h2 id="stablecoin">Visual: stablecoin creation</h2>
+        <p class="lede">An impact-backed stablecoin can be spun up without Maker-style collateral complexity—showing the essential path from collateral to impact.</p>
+        <div class="grid">
+          <div class="card flow-step">
+            <h3>1) Choose backing</h3>
+            <p>Pick reserves that anchor a stable store of value so communities can transact with the rest of the world confidently.</p>
+          </div>
+          <div class="card flow-step">
+            <h3>2) Mint stablecoin</h3>
+            <p>Lock reserves and mint the stable asset; program basic ratios and ceilings only as needed.</p>
+          </div>
+          <div class="card flow-step">
+            <h3>3) Put it to work</h3>
+            <p>Use the stable asset for payments, community trade, and access to services while keeping reserves auditable.</p>
+          </div>
+          <div class="card flow-step">
+            <h3>4) Rebalance & prove</h3>
+            <p>Periodic rebalances keep backing healthy; dashboards expose reserves, flows, and impacts.</p>
+          </div>
         </div>
       </div>
-    </section>
 
-    <section id="tokenization">
-      <h2>Tokenizing impact projects</h2>
-      <p class="lede">Focus on project data and credibility, not protocol jargon. Ownership stays durable; metadata stays updateable.</p>
-      <div class="grid">
-        <div class="card">
-          <span class="pill">Carbon credit staking (ERC-4626)</span>
-          <p>A project spins up a vault; users deposit BCT and earn yield. Yield buys more credits, creating a deflationary green flywheel.</p>
-        </div>
-        <div class="card">
-          <span class="pill">Fair-trade cacao batches (ERC-6960)</span>
-          <p>Core layer: proves ownership. Extension layer: GPS, harvest dates, certification PDFs—updated without reissuing the token.</p>
-        </div>
-        <div class="card">
-          <span class="pill">Automated donations (ERC-995)</span>
-          <p>A Social Good Token routes a 1% tax per transfer to a verified charity address, sustaining funding without manual effort.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="use-cases">
-      <h2>Impact flows</h2>
-      <p class="lede">Practical, high-trust journeys for depositors, auditors, and treasury operators.</p>
-      <div class="flow">
-        <div class="card flow-step">
-          <h3>Carbon vault depositor</h3>
-          <ul>
-            <li>Deposit carbon credits → receive shares.</li>
-            <li>Vault deploys to DeFi, reinvests yield into more credits.</li>
-            <li>Dashboard shows PnL vs HODL and CO₂ impact.</li>
-          </ul>
-        </div>
-        <div class="card flow-step">
-          <h3>RWA verifier</h3>
-          <ul>
-            <li>View ownership alongside live provenance fields.</li>
-            <li>Update GPS, harvest dates, or cert docs without changing ownership.</li>
-            <li>Timeline proves who changed what, with signatures and links.</li>
-          </ul>
-        </div>
-        <div class="card flow-step">
-          <h3>DAO treasurer</h3>
-          <ul>
-            <li>Enable 1% tithing; set beneficiaries and settlement cadence.</li>
-            <li>Funds route automatically per transfer.</li>
-            <li>Impact dashboard shows monthly flows and receipts.</li>
-          </ul>
+      <div class="tab-content" id="tab-tokenization">
+        <h2 id="tokenization">Tokenizing impact projects</h2>
+        <p class="lede">Examples of how impact projects could tokenize outcomes in plain language.</p>
+        <div class="grid">
+          <div class="card">
+            <span class="pill">Carbon credit staking (ERC-4626)</span>
+            <p>A project spins up a vault; users deposit BCT and earn yield. Yield buys more credits, creating a deflationary green flywheel.</p>
+          </div>
+          <div class="card">
+            <span class="pill">Fair-trade cacao batches (ERC-6960)</span>
+            <p>Core layer: proves ownership. Extension layer: GPS, harvest dates, certification PDFs—updated without reissuing the token.</p>
+          </div>
+          <div class="card">
+            <span class="pill">Automated donations (ERC-995)</span>
+            <p>A Social Good Token routes a 1% tax per transfer to a verified charity address, sustaining funding without manual effort.</p>
+          </div>
         </div>
       </div>
     </section>
   </main>
 
   <footer>
-    Built for abundance: impact vaults, trustworthy provenance, and automated giving in one interface.
+    Built for Abundance
   </footer>
+  <script>
+    const tabs = document.querySelectorAll('.tab');
+    const panels = document.querySelectorAll('.tab-content');
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        panels.forEach(p => p.classList.remove('active'));
+        tab.classList.add('active');
+        const panel = document.getElementById(`tab-${tab.dataset.tab}`);
+        if (panel) panel.classList.add('active');
+      });
+    });
+  </script>
 </body>
 </html>
