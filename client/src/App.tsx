@@ -12,7 +12,7 @@ function Router() {
   return (
     <Router base={basePath}>
       <Switch>
-        <Route path="/" component={Home} />
+        <Route path={["/", ""]} component={Home} />
         <Route component={NotFound} />
       </Switch>
     </Router>
