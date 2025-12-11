@@ -1,8 +1,17 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Leaf, Shield, Users, Coins, Globe, Heart, Activity, CheckCircle, ArrowUpRight } from "lucide-react";
-import heroBg from "@assets/generated_images/hero_background_showing_digital_abundance_merging_with_nature.png";
-import tokenImg from "@assets/generated_images/tokenization_concept_art.png";
-import communityImg from "@assets/generated_images/community_network_visualization.png";
+import {
+  ArrowRight,
+  Leaf,
+  Shield,
+  Users,
+  Coins,
+  Activity,
+  CheckCircle,
+  ArrowUpRight,
+} from "lucide-react";
+import heroBg from "@assets/generated_images/hero_background_showing_digital_abundance_merging_with_nature.webp";
+import tokenImg from "@assets/generated_images/tokenization_concept_art.webp";
+import communityImg from "@assets/generated_images/community_network_visualization.webp";
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
@@ -45,6 +54,7 @@ export default function Home() {
             src={heroBg} 
             alt="Abundance flowing" 
             className="w-full h-full object-cover opacity-90"
+            decoding="async"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background" />
         </div>
@@ -119,7 +129,13 @@ export default function Home() {
             
             <div className="relative">
               <div className="aspect-square rounded-[2rem] overflow-hidden shadow-2xl rotate-3 hover:rotate-0 transition-transform duration-700">
-                <img src={communityImg} alt="Community Systems" className="w-full h-full object-cover" />
+                <img
+                  src={communityImg}
+                  alt="Community Systems"
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                  decoding="async"
+                />
               </div>
               <div className="absolute -bottom-10 -left-10 glass p-8 rounded-2xl max-w-xs shadow-xl hidden md:block">
                 <div className="flex items-center gap-4 mb-4">
@@ -212,7 +228,13 @@ export default function Home() {
         <div className="container mx-auto px-6">
           <div className="grid md:grid-cols-2 gap-16 items-center">
             <div className="order-2 md:order-1">
-              <img src={tokenImg} alt="Tokenization" className="rounded-3xl shadow-2xl w-full" />
+              <img
+                src={tokenImg}
+                alt="Tokenization"
+                className="rounded-3xl shadow-2xl w-full"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
             <div className="order-1 md:order-2">
               <h2 className="font-display text-4xl md:text-5xl font-bold mb-8">Impact projects, tokenized simply.</h2>
