@@ -1,446 +1,674 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>We Won</title>
+  <title>Won | Shared Flourishing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-dark: #0c0f1a;
-      --bg-deep: #03030a;
-      --bg-bright: #0c0bff;
-      --text: #f6f7fb;
-      --muted: #cfd3e1;
-      --accent: #6ddcff;
-      --accent-2: #9a6dff;
-      --panel: rgba(255, 255, 255, 0.06);
-      --border: rgba(255, 255, 255, 0.14);
+      --cream: #f4f5ee;
+      --deep-green: #0f2d21;
+      --forest: #123626;
+      --mint: #00c46c;
+      --light-mint: #daf5e8;
+      --warm: #e9decf;
+      --text: #0b1c15;
+      --muted: #4a5b53;
+      --card: #ffffff;
+      --shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
     }
-    * { box-sizing: border-box; }
-    html, body {
+    * {
       margin: 0;
       padding: 0;
-      font-family: "DM Sans", "Segoe UI", sans-serif;
-      background: var(--bg-dark);
+      box-sizing: border-box;
+    }
+    body {
+      font-family: "Plus Jakarta Sans", "Segoe UI", sans-serif;
+      background: var(--cream);
       color: var(--text);
-      scroll-behavior: smooth;
+      line-height: 1.6;
+      overflow-x: hidden;
     }
     a { color: inherit; text-decoration: none; }
-    header {
-      position: sticky;
+    img { max-width: 100%; display: block; }
+    .container {
+      width: min(1200px, 90vw);
+      margin: 0 auto;
+    }
+    /* Navigation */
+    .top-bar {
+      position: fixed;
       top: 0;
-      z-index: 10;
-      background: linear-gradient(180deg, rgba(3,3,10,0.95), rgba(3,3,10,0.85));
-      border-bottom: 1px solid var(--border);
-      backdrop-filter: blur(10px);
+      left: 0;
+      right: 0;
+      z-index: 20;
+      background: rgba(255, 255, 255, 0.72);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.5);
     }
     .nav {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 14px 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 18px;
+      height: 76px;
     }
     .brand {
       display: flex;
       align-items: center;
       gap: 10px;
       font-weight: 700;
-      font-size: 16px;
-      letter-spacing: 0.3px;
+      letter-spacing: -0.01em;
     }
     .logo {
-      width: 32px;
-      height: 32px;
-      border-radius: 12px;
-      background: linear-gradient(135deg, #6ddcff, #9a6dff);
+      height: 34px;
+      width: 34px;
+      border-radius: 50%;
+      background: linear-gradient(145deg, #1fd17a, #0ea95c);
       display: grid;
       place-items: center;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+      color: #fff;
+      font-weight: 700;
+      box-shadow: 0 12px 24px rgba(0, 196, 108, 0.35);
     }
-    .logo svg { width: 18px; height: 18px; fill: #0c0f1a; }
     .nav-links {
       display: flex;
-      gap: 14px;
+      gap: 24px;
       font-weight: 600;
-      font-size: 13px;
+      color: #0f2d21;
     }
     .nav-links a {
-      padding: 8px 12px;
+      padding: 10px 6px;
       border-radius: 10px;
-      border: 1px solid transparent;
-      transition: border-color 0.2s, background 0.2s, color 0.2s;
+      transition: color 0.2s, background 0.2s;
     }
     .nav-links a:hover {
-      border-color: var(--border);
-      background: var(--panel);
-      color: var(--accent);
+      background: rgba(0, 196, 108, 0.08);
+      color: var(--mint);
     }
-    .section {
-      padding: 60px 18px;
+    .pill {
+      padding: 12px 18px;
+      border-radius: 999px;
+      background: linear-gradient(120deg, #1fd17a, #0ea95c);
+      color: #fff;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      box-shadow: 0 18px 30px rgba(0, 196, 108, 0.35);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
+    .pill:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 24px 36px rgba(0, 196, 108, 0.4);
     }
+    /* Hero */
     .hero {
-      background: linear-gradient(180deg, rgba(3,3,10,0.8), rgba(3,3,10,0.8)), url("assets/defaultdark-1_e0d39490.jpg") center/cover;
-      border-bottom: 1px solid var(--border);
+      position: relative;
+      min-height: 90vh;
+      display: grid;
+      align-items: center;
+      padding: 120px 0 120px;
+      color: #0a2016;
+      background: linear-gradient(135deg, rgba(13, 43, 33, 0.35), rgba(12, 30, 23, 0.7)), url("assets/okCmKl39TwbVbG4IQnSjD.png") center/cover no-repeat;
     }
-    .hero h1 {
-      font-size: 34px;
-      margin: 12px 0 12px;
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(244, 245, 238, 0.65) 10%, rgba(244, 245, 238, 0) 55%, rgba(244, 245, 238, 0.85) 100%);
+      pointer-events: none;
     }
-    .hero .lede { max-width: 760px; }
-    .eyebrow {
-      text-transform: uppercase;
-      letter-spacing: 0.2rem;
-      font-size: 12px;
-      color: var(--muted);
-      margin: 0 0 8px;
+    .hero .container {
+      position: relative;
+      z-index: 2;
     }
-    .lede, .body {
-      color: var(--muted);
-      line-height: 1.7;
-      font-size: 16px;
-      margin: 0 0 16px;
-    }
-    .cta-row {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 10px;
-    }
-    .btn {
+    .chip {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
       padding: 10px 16px;
-      border-radius: 10px;
-      border: 1px solid transparent;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.7);
+      color: var(--muted);
+      font-weight: 600;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+      margin-bottom: 18px;
+    }
+    .chip span {
+      display: inline-block;
+      height: 8px;
+      width: 8px;
+      border-radius: 50%;
+      background: var(--mint);
+    }
+    .hero h1 {
+      font-size: clamp(42px, 5vw, 64px);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: #0b2218;
+      margin-bottom: 20px;
+    }
+    .hero h1 strong { color: #00a978; }
+    .hero p {
+      max-width: 620px;
+      font-size: 18px;
+      color: #143327;
+      margin-bottom: 28px;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      padding: 14px 22px;
+      border-radius: 12px;
       font-weight: 700;
+      border: 2px solid transparent;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease;
+    }
+    .btn.primary {
+      background: linear-gradient(120deg, #1fd17a, #0ea95c);
+      color: #fff;
+      box-shadow: 0 16px 32px rgba(0, 196, 108, 0.32);
+    }
+    .btn.primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 22px 38px rgba(0, 196, 108, 0.38);
+    }
+    .btn.outline {
+      border-color: #0f2d21;
+      color: #0f2d21;
+      background: rgba(255, 255, 255, 0.8);
+    }
+    .btn.outline:hover {
+      background: #0f2d21;
+      color: #fff;
+    }
+    /* Section: Sufficiency */
+    section {
+      padding: 90px 0;
+    }
+    .sufficiency {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .section-eyebrow {
+      color: #00a978;
+      letter-spacing: 0.08em;
+      font-weight: 800;
+      font-size: 12px;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .section-title {
+      font-size: 32px;
+      line-height: 1.18;
+      letter-spacing: -0.02em;
+      margin-bottom: 14px;
+    }
+    .section-lead {
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 28px;
+    }
+    .card {
+      background: var(--card);
+      border-radius: 14px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(17, 50, 38, 0.05);
+    }
+    .card h4 {
+      font-size: 16px;
+      margin-bottom: 6px;
+    }
+    .card p {
+      color: var(--muted);
       font-size: 14px;
-      color: #0c0f1a;
-      background: linear-gradient(135deg, #6ddcff, #9a6dff);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+      line-height: 1.5;
     }
-    .btn.secondary {
-      background: transparent;
-      color: var(--text);
-      border-color: var(--border);
+    .icon {
+      height: 40px;
+      width: 40px;
+      border-radius: 12px;
+      background: var(--light-mint);
+      display: grid;
+      place-items: center;
+      color: #0b8b5c;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+    .visual-stack {
+      position: relative;
+      perspective: 1600px;
+    }
+    .visual-stack img {
+      width: 100%;
+      border-radius: 24px;
+      box-shadow: 0 30px 70px rgba(0, 0, 0, 0.25);
+      transform: rotate(-2deg);
+    }
+    .floating-card {
+      position: absolute;
+      bottom: 14%;
+      left: 8%;
+      background: #fff;
+      padding: 14px 16px;
+      border-radius: 14px;
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.18);
+      display: inline-flex;
+      flex-direction: column;
+      gap: 6px;
+      min-width: 160px;
+    }
+    .floating-card .pill {
+      padding: 8px 14px;
+      font-size: 12px;
       box-shadow: none;
+      align-self: flex-start;
     }
-    h2.section-title { margin: 0 0 12px; font-size: 24px; letter-spacing: 0.2px; }
-    h3 { margin: 0 0 10px; }
-    .grid-2 {
+    /* Voice section */
+    .voice {
+      background: var(--forest);
+      color: #f4f5ee;
+      text-align: center;
+      padding: 110px 0 90px;
+    }
+    .voice h2 {
+      font-size: 32px;
+      margin-bottom: 12px;
+      letter-spacing: -0.02em;
+    }
+    .voice p {
+      color: #c8d7ce;
+      max-width: 700px;
+      margin: 0 auto 36px;
+    }
+    .voice-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 18px;
-      margin-top: 14px;
+      margin-top: 24px;
     }
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 14px;
-      margin-top: 12px;
-    }
-    .panel {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 16px;
+    .voice-card {
+      background: linear-gradient(160deg, rgba(255, 255, 255, 0.05), rgba(0, 0, 0, 0.25));
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #f1f7f3;
       padding: 18px;
-      box-shadow: 0 18px 60px rgba(0,0,0,0.25);
+      border-radius: 14px;
+      text-align: left;
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.25);
     }
-    .panel.deep {
-      background: linear-gradient(145deg, rgba(12,11,255,0.12), rgba(0,0,0,0.6));
+    .voice-card .dot {
+      height: 14px;
+      width: 14px;
+      border-radius: 50%;
+      margin-bottom: 12px;
     }
-    .steps {
-      list-style: decimal;
-      margin: 14px 0 0;
-      padding-left: 18px;
-      color: var(--muted);
-      display: grid;
-      gap: 12px;
+    .voice-card h4 {
+      margin-bottom: 6px;
+      font-size: 18px;
+      letter-spacing: -0.01em;
     }
-    .steps strong { color: var(--text); }
-    .pillars {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 12px;
-      margin-top: 14px;
+    .voice-card p {
+      color: #c7d8cf;
+      font-size: 14px;
     }
-    .badge-row {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin: 10px 0;
-    }
-    .badge {
-      background: rgba(109,220,255,0.15);
-      border: 1px solid var(--border);
-      padding: 8px 10px;
-      border-radius: 10px;
+    .voice-card small {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 12px;
+      color: #d3e6db;
       font-weight: 600;
-      color: var(--text);
     }
-    footer {
-      background: #0c1b4f;
-      padding: 26px 18px 32px;
-      color: #dfe6ff;
-      border-top: 1px solid var(--border);
-    }
-    footer .container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 14px;
+    /* Mechanism */
+    .mechanism {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 48px;
       align-items: center;
     }
+    .step-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .step-card {
+      background: var(--card);
+      border-radius: 14px;
+      padding: 18px;
+      border: 1px solid rgba(17, 50, 38, 0.05);
+      box-shadow: var(--shadow);
+      min-height: 150px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .step-num {
+      font-weight: 800;
+      color: #d8e2d2;
+      font-size: 22px;
+      letter-spacing: 0.05em;
+    }
+    /* Impact */
+    .impact {
+      display: grid;
+      grid-template-columns: 1fr 1.05fr;
+      gap: 48px;
+      align-items: center;
+    }
+    .impact-photo img {
+      border-radius: 20px;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
+    }
+    .checklist {
+      display: grid;
+      gap: 14px;
+      margin-top: 18px;
+    }
+    .check-item {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 10px;
+      align-items: flex-start;
+      background: #f8f9f4;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(17, 50, 38, 0.08);
+    }
+    .checkmark {
+      height: 26px;
+      width: 26px;
+      border-radius: 50%;
+      background: #d9f5e7;
+      color: #0ea95c;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+    }
+    /* Footer */
+    footer {
+      background: #0c2419;
+      color: #d2ded5;
+      padding: 70px 0 40px;
+      margin-top: 70px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.2fr repeat(3, minmax(0, 1fr));
+      gap: 40px;
+      margin-bottom: 32px;
+    }
+    .footer-col h5 {
+      font-size: 16px;
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+      color: #f0f6f2;
+    }
+    .footer-col ul {
+      list-style: none;
+      display: grid;
+      gap: 10px;
+      color: #b8c8be;
+      font-size: 14px;
+    }
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      color: #f0f6f2;
+      margin-bottom: 12px;
+    }
+    .copyright {
+      color: #90a79b;
+      font-size: 13px;
+      text-align: center;
+    }
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .sufficiency,
+      .mechanism,
+      .impact {
+        grid-template-columns: 1fr;
+      }
+      .hero {
+        padding: 120px 0 80px;
+      }
+      .nav-links {
+        display: none;
+      }
+      .top-bar { background: rgba(255, 255, 255, 0.9); }
+    }
     @media (max-width: 720px) {
-      .nav { flex-direction: column; align-items: flex-start; }
-      .hero h1 { font-size: 28px; }
-      .cta-row { flex-direction: column; align-items: flex-start; }
+      section { padding: 70px 0; }
+      .hero h1 { font-size: 38px; }
+      .voice h2,
+      .section-title { font-size: 28px; }
+      .feature-grid,
+      .step-grid {
+        grid-template-columns: 1fr;
+      }
+      .floating-card { position: static; margin-top: -30px; }
     }
   </style>
 </head>
 <body>
-  <header>
-    <div class="nav">
+  <div class="top-bar">
+    <div class="container nav">
       <div class="brand">
-        <div class="logo" aria-hidden="true">
-          <svg viewBox="0 0 24 24" role="img" focusable="false">
-            <path d="M5 16.5c0-.8.6-1.4 1.4-1.4 1.5 0 2.5-.5 3.2-1.8l2.7-5c.3-.6.9-.9 1.5-.9.9 0 1.6.7 1.6 1.6 0 .3-.1.6-.2.9l-1.9 3.6c-.5.9-.4 1.6.2 2.3.4.4.8.5 1.4.5.8 0 1.5.6 1.5 1.4s-.7 1.5-1.5 1.5c-1.3 0-2.3-.4-3.1-1.2-.8-.8-1.2-1.7-1.2-2.8 0-.2 0-.5.1-.7l.5-1-1.1 2.2c-.9 1.8-2.4 2.8-4.7 2.8-.8 0-1.4-.6-1.4-1.4z"/>
-          </svg>
-        </div>
-        <span>We Won</span>
+        <div class="logo">W</div>
+        <span>Won</span>
       </div>
-      <nav class="nav-links">
-        <a href="#stablecoin">Stablecoin Creation</a>
-        <a href="#tokenization">Tokenization</a>
-      </nav>
+      <div class="nav-links">
+        <a href="#">Foundation</a>
+        <a href="#">Impact</a>
+        <a href="#">Stablecoin</a>
+        <a href="#">Tokenization</a>
+      </div>
+      <a class="pill" href="#">Join the Movement</a>
+    </div>
+  </div>
+
+  <header class="hero">
+    <div class="container">
+      <div class="chip"><span></span> Abundance, not scarcity</div>
+      <h1>The Currency of <strong>Shared</strong><br>Flourishing</h1>
+      <p>A universally accessible system that channels humanity's abundant resources, knowledge, and cooperation toward thriving communities everywhere.</p>
+      <div class="hero-actions">
+        <a class="btn primary" href="#">Begin the Build</a>
+        <a class="btn outline" href="#">Learn How It Works</a>
+      </div>
     </div>
   </header>
 
-  <section class="section hero">
-    <div class="container">
-      <p class="eyebrow">Abundance, not scarcity — sufficiency, not scarcity</p>
-      <h1>Won: The Currency of Shared Flourishing</h1>
-      <p class="lede">A universally accessible system that channels humanity's abundant resources, knowledge, and cooperation toward thriving communities everywhere—starting today.</p>
-      <div class="cta-row">
-        <a class="btn" href="#impact">Join the movement</a>
-        <a class="btn secondary" href="#foundation">Learn how it works</a>
+  <main>
+    <section>
+      <div class="container sufficiency">
+        <div>
+          <div class="section-eyebrow">The abundance is already here</div>
+          <div class="section-title">Sufficiency, Not Scarcity</div>
+          <div class="section-lead">Live systems naturally cooperate to thrive. When we align incentives toward shared abundance, sufficiency is a design choice.</div>
+          <p>Won aligns incentives so communities can resource what they need without fear-based scarcity loops. With transparent commitments to give back before taking, Won transforms underperforming resources into collective assets.</p>
+          <div class="feature-grid">
+            <div class="card">
+              <div class="icon">=</div>
+              <h4>Financial Systems</h4>
+              <p>Stable value, aligned with community benefit.</p>
+            </div>
+            <div class="card">
+              <div class="icon">+</div>
+              <h4>Local Trust</h4>
+              <p>Cooperative assurance that promises are kept.</p>
+            </div>
+            <div class="card">
+              <div class="icon">&#36;</div>
+              <h4>Collective Treasury</h4>
+              <p>Capital flows back to those who build it.</p>
+            </div>
+            <div class="card">
+              <div class="icon">≡</div>
+              <h4>Community Decision</h4>
+              <p>Voting keeps action aligned with values.</p>
+            </div>
+          </div>
+        </div>
+        <div class="visual-stack">
+          <img src="assets/HsTz_whd1IacCQGnLXIV6.png" alt="Network illustration">
+          <div class="floating-card">
+            <div class="pill" style="padding:6px 12px;">+2.4k Members</div>
+            <p style="color:#0f2d21; font-weight:600; font-size:14px;">"The community itself decides. This democratic process eliminates powerlessness."</p>
+          </div>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="section" id="foundation" style="background: #0f111b;">
-    <div class="container">
-      <h2 class="section-title">Sufficiency, Not Scarcity</h2>
-      <h3>The foundation</h3>
-      <p class="body">Live systems naturally cooperate to thrive. When we align incentives toward shared abundance, sufficiency is a design choice. Won aligns incentives so communities can resource what they need without fear-based scarcity loops.</p>
-      <p class="body">With transparent commitments to give back before taking, Won transforms underperforming or idle resources into collective assets people can steward and reinvest.</p>
-      <h3>How Won works for everyone</h3>
-      <div class="grid-2">
-        <div class="panel">
-          <h3>Financial Systems</h3>
-          <p class="body">Stable value, liquidity, and transparent backing that stay aligned with community benefit.</p>
-        </div>
-        <div class="panel">
-          <h3>Local Trust</h3>
-          <p class="body">Cooperative assurance that promises will be kept and benefits are shared.</p>
-        </div>
-        <div class="panel">
-          <h3>Collective Treasury</h3>
-          <p class="body">Capital that flows back into the people who build and uphold it.</p>
-        </div>
-        <div class="panel">
-          <h3>Community Decision</h3>
-          <p class="body">People decide. Voting and consensus keep action aligned with local values.</p>
+    <section class="voice">
+      <div class="container">
+        <h2>Your Voice Determines Outcomes</h2>
+        <p>The democratic process affirms your participation matters. Your voice shapes real outcomes in the physical world.</p>
+        <div class="voice-grid">
+          <div class="voice-card">
+            <div class="dot" style="background:#2ad180;"></div>
+            <h4>Climate Restoration</h4>
+            <p>Direct funding for reforestation, clean energy, and biodiversity stability.</p>
+            <small>&rsaquo; Impact verified</small>
+          </div>
+          <div class="voice-card">
+            <div class="dot" style="background:#4387f6;"></div>
+            <h4>Economic Development</h4>
+            <p>Support local businesses, job creation, and financial inclusion.</p>
+            <small>&rsaquo; Impact verified</small>
+          </div>
+          <div class="voice-card">
+            <div class="dot" style="background:#f6a623;"></div>
+            <h4>Community Wellbeing</h4>
+            <p>Invest in healthcare, education, and food security initiatives.</p>
+            <small>&rsaquo; Impact verified</small>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="section" id="impact" style="background:#0a0a0f;">
-    <div class="container">
-      <h2 class="section-title">Your Voice Determines Outcomes</h2>
-      <p class="body">The community itself decides. This democratic process eliminates powerlessness and affirms: your participation matters. Your voice shapes real outcomes.</p>
-      <div class="pillars">
-        <div class="panel">
-          <h3>Climate Restoration</h3>
-          <p class="body">Direct funding to reforestation, clean energy, and ecosystem recovery.</p>
+    <section>
+      <div class="container mechanism">
+        <div>
+          <div class="section-eyebrow">The mechanism</div>
+          <div class="section-title">An impact-backed stablecoin without complexity</div>
+          <div class="section-lead">See the essential path from collateral to impact. No extra buttons, just the flow.</div>
+          <a href="#" class="btn outline" style="padding:12px 18px; border-radius:10px;">Start Minting</a>
         </div>
-        <div class="panel">
-          <h3>Economic Development</h3>
-          <p class="body">Support local businesses, job creation, and financial inclusion.</p>
-        </div>
-        <div class="panel">
-          <h3>Community Wellbeing</h3>
-          <p class="body">Invest in healthcare, education, and food security initiatives.</p>
+        <div class="step-grid">
+          <div class="step-card">
+            <div class="step-num">01</div>
+            <h4>Choose Backing</h4>
+            <p>Pick reserves that anchor a stable store of value.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-num">02</div>
+            <h4>Mint Stablecoin</h4>
+            <p>Lock reserves and mint the stable asset.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-num">03</div>
+            <h4>Put it to Work</h4>
+            <p>Use for payments, trade, and service access.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-num">04</div>
+            <h4>Rebalance &amp; Prove</h4>
+            <p>Dashboards expose reserves, flows, and impacts.</p>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="section" style="background:#0f111b;">
-    <div class="container" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;align-items:center;">
-      <img src="assets/TRJ7J5XtfAoJx4uKhfFPZ.png" alt="Community systems" style="width:100%;border-radius:12px;border:1px solid var(--border);box-shadow:0 12px 40px rgba(0,0,0,0.35);">
-      <div>
-        <h2 class="section-title">Local Economic Sovereignty</h2>
-        <h3>Build your own systems</h3>
-        <p class="body">Communities design currencies, treasuries, and agreements that reflect their own values. They direct benefits to the people upholding them, while aligning with global trust and liquidity.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" style="background: var(--bg-bright);">
-    <div class="container">
-      <h2 class="section-title" style="color:#0b0b18;">Core Characteristics</h2>
-      <div class="grid-2">
-        <div class="panel deep">
-          <h3>Universal Inclusion</h3>
-          <p class="body">No elite gatekeepers. Anyone aligned with abundance can join, build, and benefit.</p>
+    <section>
+      <div class="container impact">
+        <div class="impact-photo">
+          <img src="assets/4qTtOyro8l6KOO00pCLsq.png" alt="Impact token cube">
         </div>
-        <div class="panel deep">
-          <h3>Tangible Benefit</h3>
-          <p class="body">Every project must show tangible outcomes: jobs, restored land, clean energy, or resilient services.</p>
-        </div>
-        <div class="panel deep">
-          <h3>Collective Decision-Making</h3>
-          <p class="body">Design decisions stay in community hands, guided by transparent metrics and consent.</p>
-        </div>
-        <div class="panel deep">
-          <h3>Purpose Aligned</h3>
-          <p class="body">Incentives reward stewardship, long-term wellbeing, and reciprocity over extraction.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" style="background:#0a0a0f;">
-    <div class="container">
-      <h2 class="section-title">Respectful Pluralism in Action</h2>
-      <div class="grid-2">
-        <div class="panel">
-          <h3>Indigenous Communities</h3>
-          <p class="body">Honor traditions of reciprocity and guardianship of land and people.</p>
-        </div>
-        <div class="panel">
-          <h3>Urban Centers</h3>
-          <p class="body">Create resilient hubs, local green jobs, and networks of care.</p>
-        </div>
-        <div class="panel">
-          <h3>Rural Regions</h3>
-          <p class="body">Apply regenerative practices, keep value circulating locally, and share surplus.</p>
-        </div>
-        <div class="panel">
-          <h3>Plural Commitments</h3>
-          <p class="body">One system, many expressions. Locals choose what to fund and how to govern.</p>
+        <div>
+          <div class="section-eyebrow">Impact you can see</div>
+          <div class="section-title">Impact projects, tokenized simply.</div>
+          <div class="section-lead">Each token carries proof of impact. Transparent by design, trusted by communities.</div>
+          <div class="checklist">
+            <div class="check-item">
+              <div class="checkmark">&#10003;</div>
+              <div>
+                <strong>Carbon Credit Vault (ERC-4626)</strong>
+                <p>Users deposit; credits yield is reinvested to accumulate more.</p>
+              </div>
+            </div>
+            <div class="check-item">
+              <div class="checkmark">&#10003;</div>
+              <div>
+                <strong>Fair-trade Cacao Batch (ERC-6950)</strong>
+                <p>Ownership stays in core layer; certifications in settlement layer.</p>
+              </div>
+            </div>
+            <div class="check-item">
+              <div class="checkmark">&#10003;</div>
+              <div>
+                <strong>Automated Donations (ERC-995)</strong>
+                <p>Social token routes fees on each transfer to verified beneficiaries.</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
-
-  <section class="section" style="background: var(--bg-bright);">
-    <div class="container" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;align-items:center;">
-      <div>
-        <h2 class="section-title" style="color:#0b0b18;">The Deeper Insight</h2>
-        <p class="body" style="color:#0b0b18;">We already have what we need. The choice is to coordinate differently—letting abundance circulate through trust, transparent backing, and community-directed outcomes.</p>
-      </div>
-      <img src="assets/okCmKl39TwbVbG4IQnSjD.png" alt="Network insight" style="width:100%;border-radius:12px;border:1px solid rgba(0,0,0,0.08);box-shadow:0 12px 40px rgba(0,0,0,0.35);">
-    </div>
-  </section>
-
-  <section class="section" style="background:#0a0a0f;">
-    <div class="container">
-      <h2 class="section-title">The Invitation: You Belong Here</h2>
-      <div class="badge-row">
-        <span class="badge">Recognition</span>
-        <span class="badge">Welcome</span>
-        <span class="badge">Action</span>
-      </div>
-      <p class="body">Your voice matters. Join a network where abundance is designed in, and collective benefit is the point.</p>
-      <div class="cta-row">
-        <a class="btn" href="#stablecoin">Begin the build</a>
-        <a class="btn secondary" href="#tokenization">Connect with community</a>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="stablecoin" style="background: radial-gradient(circle at 20% 20%, rgba(255,255,255,0.04), transparent 32%), #0f1625;">
-    <div class="container">
-      <p class="eyebrow">Visual: stablecoin creation</p>
-      <h2 class="section-title">An impact-backed stablecoin without collateral complexity</h2>
-      <div class="panel">
-        <p class="body">See the essential path from collateral to impact. No extra buttons, just the flow.</p>
-        <ol class="steps">
-          <li><strong>Choose backing.</strong> Pick reserves that anchor a stable store of value so communities can transact with the rest of the world confidently.</li>
-          <li><strong>Mint stablecoin.</strong> Lock reserves and mint the stable asset; program basic ratios and ceilings only as needed.</li>
-          <li><strong>Put it to work.</strong> Use the stable asset for payments, community trade, and access to services while keeping reserves auditable.</li>
-          <li><strong>Rebalance &amp; prove.</strong> Periodic rebalances keep backing healthy; dashboards expose reserves, flows, and impacts.</li>
-        </ol>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="tokenization" style="background: radial-gradient(circle at 80% 10%, rgba(255,255,255,0.05), transparent 34%), #071423;">
-    <div class="container">
-      <p class="eyebrow">Tokenization</p>
-      <h2 class="section-title">Impact projects, tokenized simply and transparently</h2>
-      <div class="grid-3">
-        <div class="panel">
-          <h3>Carbon credit vault (ERC-4626)</h3>
-          <p class="body">A project opens a vault; users deposit carbon credits; yield is reinvested to accumulate more credits.</p>
-        </div>
-        <div class="panel">
-          <h3>Fair-trade cacao batch (ERC-6960)</h3>
-          <p class="body">Ownership stays in a core layer, while GPS, harvest dates, and certifications stay editable in an extension layer.</p>
-        </div>
-        <div class="panel">
-          <h3>Automated donations (ERC-995)</h3>
-          <p class="body">A social token routes a set fee on each transfer directly to verified beneficiaries, sustaining ongoing support.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" style="background: #0a0a0f;">
-    <div class="container">
-      <h2 class="section-title">Designed for Universal Resonance</h2>
-      <p class="body">Abundance, not scarcity.</p>
-      <div class="grid-3">
-        <div class="panel">
-          <h3>Clear Mechanics</h3>
-          <p class="body">Transparent governance, measurable impact, and straightforward processes for those who value directness.</p>
-        </div>
-        <div class="panel">
-          <h3>Relationship Focus</h3>
-          <p class="body">Community trust, long-term relationships, and harmony between individual and collective benefit.</p>
-        </div>
-        <div class="panel">
-          <h3>Visual Stories</h3>
-          <p class="body">Clear demonstrations of Won's flow from transaction to treasury to community projects with real impact.</p>
-        </div>
-        <div class="panel">
-          <h3>Ancient Principles</h3>
-          <p class="body">Honoring traditions of reciprocity, stewardship, and collective abundance practiced for generations.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
   <footer>
-    <div class="container">
+    <div class="container footer-grid">
       <div>
-        <p style="margin:0;font-weight:600;">Together, we're already winning.</p>
-        <p style="margin:4px 0 0;">Join Won and help build the currency of shared flourishing.</p>
+        <div class="footer-brand">
+          <div class="logo">W</div>
+          <span>Won</span>
+        </div>
+        <p>We already have what we need. The choice is to coordinate differently—letting abundance circulate through trust.</p>
       </div>
-      <div class="cta-row" style="margin:0;">
-        <a class="btn secondary" href="#impact">Return to top</a>
-        <a class="btn" href="#tokenization">Connect with community</a>
+      <div class="footer-col">
+        <h5>Platform</h5>
+        <ul>
+          <li>Foundation</li>
+          <li>Stablecoin</li>
+          <li>Tokenization</li>
+          <li>Governance</li>
+        </ul>
       </div>
+      <div class="footer-col">
+        <h5>Community</h5>
+        <ul>
+          <li>Discord</li>
+          <li>Twitter</li>
+          <li>GitHub</li>
+          <li>Documentation</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Resources</h5>
+        <ul>
+          <li>Impact Reports</li>
+          <li>Case Studies</li>
+          <li>Brand Assets</li>
+          <li>Contact</li>
+        </ul>
+      </div>
+    </div>
+    <div class="container">
+      <div class="copyright">© 2024 Won Flourishing Network. All rights reserved.</div>
     </div>
   </footer>
 </body>
