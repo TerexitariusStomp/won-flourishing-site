@@ -770,7 +770,7 @@ export default function MapPage() {
         </div>
         <div className="map-actions">
           <Link href="/" className="map-link">
-            <- Back home
+            Back home
           </Link>
           <button
             className="map-link map-toggle"

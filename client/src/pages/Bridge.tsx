@@ -302,7 +302,7 @@ function BridgeForm() {
           </div>
           <div className="bridge-nav-links">
             <Link href="/" className="bridge-nav-link">
-              ← Back home
+              Back home
             </Link>
             <div className="flex items-center gap-2">
               <ConnectButton />

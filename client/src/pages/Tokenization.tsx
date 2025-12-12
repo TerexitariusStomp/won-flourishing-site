@@ -103,7 +103,7 @@ export default function TokenizationPage() {
           </div>
           <div className="bridge-nav-links">
             <Link href="/" className="bridge-nav-link">
-              <- Back home
+              Back home
             </Link>
             <Link href="/stablecoin" className="bridge-nav-link">
               Stablecoin
