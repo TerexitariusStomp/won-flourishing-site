@@ -68,9 +68,12 @@ export default function Home() {
               <Link href="/tokenization" className="hover:text-primary transition-colors">Tokenization</Link>
             </div>
             {showJoin && (
-              <button className="bg-primary text-primary-foreground px-5 py-2.5 rounded-full font-medium text-sm hover:bg-primary/90 transition-colors shadow-lg shadow-primary/20">
+              <Link
+                href="/buy"
+                className="bg-primary text-primary-foreground px-5 py-2.5 rounded-full font-medium text-sm hover:bg-primary/90 transition-colors shadow-lg shadow-primary/20"
+              >
                 Join the Movement
-              </button>
+              </Link>
             )}
           </div>
         </nav>
@@ -104,12 +107,18 @@ export default function Home() {
               </motion.p>
 
               <motion.div variants={fadeIn} className="flex flex-wrap gap-4">
-                <button className="bg-primary text-primary-foreground px-8 py-4 rounded-full font-bold text-lg hover:bg-primary/90 transition-all hover:scale-105 shadow-xl shadow-primary/25 flex items-center gap-2">
+                <Link
+                  href="/tokenization"
+                  className="bg-primary text-primary-foreground px-8 py-4 rounded-full font-bold text-lg hover:bg-primary/90 transition-all hover:scale-105 shadow-xl shadow-primary/25 flex items-center gap-2"
+                >
                   Begin the Build <ArrowRight className="w-5 h-5" />
-                </button>
-                <button className="bg-white/50 backdrop-blur-sm border border-white/60 text-foreground px-8 py-4 rounded-full font-bold text-lg hover:bg-white/80 transition-all flex items-center gap-2">
+                </Link>
+                <a
+                  href="#stablecoin"
+                  className="bg-white/50 backdrop-blur-sm border border-white/60 text-foreground px-8 py-4 rounded-full font-bold text-lg hover:bg-white/80 transition-all flex items-center gap-2"
+                >
                   Learn How It Works
-                </button>
+                </a>
                 <Link
                   href="/map"
                   className="bg-foreground/80 text-background px-8 py-4 rounded-full font-bold text-lg hover:bg-foreground transition-all flex items-center gap-2"
@@ -246,9 +255,12 @@ export default function Home() {
                 <p className="text-muted-foreground text-lg mb-8">
                   The magic is a transfer fee paid mostly by arbitrage bots. They keep pricing aligned while their activity funds regeneration.
                 </p>
-                <button className="text-primary font-bold flex items-center gap-2 hover:gap-4 transition-all group">
+                <Link
+                  href="/stablecoin"
+                  className="text-primary font-bold flex items-center gap-2 hover:gap-4 transition-all group"
+                >
                   Start Minting <ArrowRight className="w-5 h-5 group-hover:text-accent transition-colors" />
-                </button>
+                </Link>
               </div>
 
               <div className="md:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -312,9 +324,14 @@ export default function Home() {
                 >
                   Launch Striga Card <ArrowUpRight className="w-4 h-4" />
                 </a>
-                <button className="bg-white border border-border px-5 py-3 rounded-full font-semibold hover:border-primary/50 transition-colors">
+                <a
+                  href="https://striga.com/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="bg-white border border-border px-5 py-3 rounded-full font-semibold hover:border-primary/50 transition-colors"
+                >
                   View card details
-                </button>
+                </a>
               </div>
             </div>
 
