@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "wouter";
 import {
   ArrowRight,
   Leaf,
@@ -36,6 +37,9 @@ export default function Home() {
             <span className="font-display font-bold text-xl tracking-tight">Won</span>
           </div>
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-muted-foreground">
+            <Link href="/map" className="hover:text-primary transition-colors">
+              Map
+            </Link>
             <a href="#foundation" className="hover:text-primary transition-colors">Foundation</a>
             <a href="#impact" className="hover:text-primary transition-colors">Impact</a>
             <a href="#stablecoin" className="hover:text-primary transition-colors">Stablecoin</a>
@@ -86,6 +90,12 @@ export default function Home() {
               <button className="bg-white/50 backdrop-blur-sm border border-white/60 text-foreground px-8 py-4 rounded-full font-bold text-lg hover:bg-white/80 transition-all flex items-center gap-2">
                 Learn How It Works
               </button>
+              <Link
+                href="/map"
+                className="bg-foreground/80 text-background px-8 py-4 rounded-full font-bold text-lg hover:bg-foreground transition-all flex items-center gap-2"
+              >
+                View the Map <ArrowUpRight className="w-5 h-5" />
+              </Link>
             </motion.div>
           </motion.div>
         </div>

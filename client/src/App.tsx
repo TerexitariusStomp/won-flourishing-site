@@ -4,6 +4,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Home from "@/pages/Home";
+import MapPage from "@/pages/Map";
 import NotFound from "@/pages/not-found";
 
 // Router component scoped to the Vite base path (GitHub Pages needs the repo name prefix)
@@ -15,6 +16,7 @@ function AppRouter() {
     <WouterRouter base={basePath}>
       <Switch>
         <Route path="/" component={Home} />
+        <Route path="/map" component={MapPage} />
         <Route component={NotFound} />
       </Switch>
     </WouterRouter>

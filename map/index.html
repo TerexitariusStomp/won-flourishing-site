@@ -1,0 +1,578 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Global Regenerative Ecosystem Map</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""
+  />
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css"
+  />
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: #0b1224;
+      --panel: #0f1a31;
+      --text: #e9edf5;
+      --muted: #9da7ba;
+      --accent: #72f2c0;
+      --border: #1f2a46;
+      --shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Space Grotesk", system-ui, -apple-system, sans-serif;
+      background: radial-gradient(circle at 20% 20%, rgba(114, 242, 192, 0.15), transparent 40%),
+        radial-gradient(circle at 80% 0%, rgba(132, 94, 247, 0.18), transparent 36%),
+        var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    header {
+      padding: 18px 22px 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      justify-content: space-between;
+      color: var(--text);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 22px;
+      letter-spacing: 0.02em;
+    }
+
+    header p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    #app {
+      display: grid;
+      grid-template-columns: 360px 1fr;
+      gap: 12px;
+      padding: 0 12px 14px;
+      height: calc(100vh - 64px);
+    }
+
+    #sidebar {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 16px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    #map {
+      width: 100%;
+      height: 100%;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+
+    #controls {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .search {
+      position: relative;
+    }
+
+    .search input {
+      width: 100%;
+      padding: 11px 12px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--text);
+      font-size: 14px;
+    }
+
+    .filters {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 8px;
+    }
+
+    .filter-chip {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 10px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      cursor: pointer;
+      color: var(--muted);
+      font-size: 13px;
+      transition: border-color 0.2s ease, color 0.2s ease;
+    }
+
+    .filter-chip input {
+      accent-color: var(--accent);
+      margin: 0;
+    }
+
+    .filter-chip.active {
+      border-color: var(--accent);
+      color: var(--text);
+    }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .legend span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 8px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    #list {
+      overflow-y: auto;
+      padding-right: 4px;
+      flex: 1;
+    }
+
+    .card {
+      padding: 12px;
+      border-radius: 12px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      margin-bottom: 10px;
+      cursor: pointer;
+      transition: border-color 0.15s ease, transform 0.15s ease;
+    }
+
+    .card:hover {
+      border-color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    .card .meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 6px;
+      align-items: center;
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .card .name {
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .card .desc {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 8px;
+      border-radius: 999px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      font-size: 12px;
+    }
+
+    .stats {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .pill {
+      padding: 6px 10px;
+      border-radius: 10px;
+      background: rgba(114, 242, 192, 0.08);
+      border: 1px solid var(--accent);
+      color: var(--text);
+      font-weight: 600;
+      font-size: 12px;
+    }
+
+    #toggleSidebar {
+      display: none;
+      padding: 10px 12px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--text);
+      border-radius: 12px;
+      cursor: pointer;
+      width: 100%;
+      font-weight: 600;
+    }
+
+    @media (max-width: 900px) {
+      body {
+        overflow: auto;
+      }
+
+      #app {
+        grid-template-columns: 1fr;
+        height: auto;
+      }
+
+      #sidebar {
+        position: relative;
+        z-index: 1000;
+      }
+
+      #map {
+        height: 520px;
+      }
+
+      #toggleSidebar {
+        display: block;
+      }
+
+      #sidebar:not(.open) #controls,
+      #sidebar:not(.open) #list {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1>Global Regenerative Ecosystem Map</h1>
+      <p>Live directory of regenerative communities, tools, and network signals.</p>
+    </div>
+    <div class="badge">
+      <span class="dot" style="background: var(--accent);"></span>
+      Layer 0 discovery
+    </div>
+  </header>
+
+  <div id="app">
+    <aside id="sidebar" class="open">
+      <button id="toggleSidebar">Toggle filters</button>
+      <div id="controls">
+        <div class="stats">
+          <span id="countLabel">0 active nodes</span>
+          <span id="continentLabel" class="pill">Global</span>
+        </div>
+
+        <div class="search">
+          <input type="search" id="search" placeholder="Search by name, city, or keyword..." aria-label="Search nodes">
+        </div>
+
+        <div class="filters" id="filterGroup"></div>
+
+        <div class="legend" id="legend"></div>
+      </div>
+
+      <div id="list"></div>
+    </aside>
+    <div id="map"></div>
+  </div>
+
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""
+  ></script>
+  <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+  <script>
+    const categories = {
+      "ReFi": { color: "#3bc9db", label: "ReFi / Climate DeFi" },
+      "Indigenous": { color: "#f59f00", label: "Indigenous / Ancestral" },
+      "Tech": { color: "#845ef7", label: "Tech / DeSci" },
+      "Network State": { color: "#12b886", label: "Network State" },
+      "Ecovillage": { color: "#fcc419", label: "Ecovillage" },
+      "Database/Map": { color: "#4c6ef5", label: "Database / Map infra" },
+      "Network Hub": { color: "#f06595", label: "Network hub (signal)" },
+      "Restoration": { color: "#10b981", label: "Restoration Projects" }
+    };
+
+    // Core dataset using the shared schema: { id, name, type, location, lat, lng, desc }
+    // Expanded with additional data from restor.eco, agartha.one, and other sources like GEN, WWOOF, etc.
+    const nodes = [
+      { id: "refi-berlin", name: "ReFi DAO Berlin", type: "ReFi", location: "Berlin, Germany", lat: 52.52, lng: 13.405, desc: "Climate DeFi builders prototyping credit instruments with local regen projects." },
+      { id: "greenpill-denver", name: "GreenPill Denver", type: "ReFi", location: "Denver, USA", lat: 39.7392, lng: -104.9903, desc: "Community of regen founders, active at ETHDenver and year-round meetups." },
+      { id: "regen-network", name: "Regen Network HQ", type: "ReFi", location: "San José, Costa Rica", lat: 9.9281, lng: -84.0907, desc: "Core team stewarding ecological state ledgers and land-based pilots." },
+      { id: "savimbo", name: "Savimbo", type: "ReFi", location: "Cali, Colombia", lat: 3.4516, lng: -76.532, desc: "Rainforest guardians channeling carbon income directly to forest communities." },
+      { id: "dao-universe-mx", name: "DAO Universe MX", type: "Network State", location: "Mexico City, Mexico", lat: 19.4326, lng: -99.1332, desc: "Network state guild coordinating DAO services across LATAM." },
+      { id: "klima-athens", name: "Klima Athens Cell", type: "ReFi", location: "Athens, Greece", lat: 37.9838, lng: 23.7275, desc: "KlimaDAO-inspired carbon circle experimenting with local offsets." },
+      { id: "celo-nairobi", name: "Celo Nairobi Hub", type: "ReFi", location: "Nairobi, Kenya", lat: -1.2921, lng: 36.8219, desc: "Mobile-first regen finance pilots with farming cooperatives." },
+      { id: "regen-ledger", name: "Regen Ledger Core", type: "Tech", location: "Portland, USA", lat: 45.5122, lng: -122.6587, desc: "Protocol engineering for ecological data attestation and MRV." },
+      { id: "refi-spring-lisbon", name: "ReFi Spring Lisbon", type: "Tech", location: "Lisbon, Portugal", lat: 38.7223, lng: -9.1393, desc: "Regenerative startup studio blending public goods funding and DeSci tooling." },
+      { id: "native-land", name: "Native Land Digital", type: "Tech", location: "Vancouver, Canada", lat: 49.2827, lng: -123.1207, desc: "Interactive indigenous territory map providing baseline cultural context." },
+      { id: "digital-democracy", name: "Digital Democracy", type: "Database/Map", location: "San Francisco, USA", lat: 37.7749, lng: -122.4194, desc: "Mapeo creators supporting frontline partners in low-connectivity environments." },
+      { id: "mapeo-quito", name: "Mapeo Pilot - Quito", type: "Database/Map", location: "Quito, Ecuador", lat: -0.1807, lng: -78.4678, desc: "City-level pilot connecting Mapeo tools to Andean indigenous mapping." },
+      { id: "openforest-ghana", name: "Open Forest Ghana", type: "Database/Map", location: "Accra, Ghana", lat: 5.6037, lng: -0.187, desc: "Forest monitoring and community reporting using open geospatial stacks." },
+      { id: "waorani", name: "Waorani Mapping", type: "Indigenous", location: "Pastaza, Ecuador", lat: -1.45, lng: -78.5, desc: "Community-led mapping project protecting Waorani territory and rivers." },
+      { id: "suriname-terrastories", name: "Terrastories Suriname", type: "Indigenous", location: "Paramaribo, Suriname", lat: 5.852, lng: -55.2038, desc: "Story mapping with Matawai communities preserving oral histories." },
+      { id: "maori-tech", name: "Māori Tech Guild", type: "Indigenous", location: "Auckland, Aotearoa", lat: -36.8485, lng: 174.7633, desc: "Indigenous technologists weaving tikanga with web-native governance." },
+      { id: "auroville", name: "Auroville Ecovillage", type: "Ecovillage", location: "Tamil Nadu, India", lat: 12.0065, lng: 79.8109, desc: "Long-running intentional community experimenting with regenerative living." },
+      { id: "tamera", name: "Tamera Ecovillage", type: "Ecovillage", location: "Alentejo, Portugal", lat: 37.6556, lng: -8.5839, desc: "Solar village demonstrating water retention landscapes and peace research." },
+      { id: "findhorn", name: "Findhorn Ecovillage", type: "Ecovillage", location: "Moray, Scotland", lat: 57.649, lng: -3.6, desc: "Pioneer ecovillage linking spiritual ecology with local stewardship." },
+      { id: "prospera", name: "Próspera", type: "Network State", location: "Roatán, Honduras", lat: 16.317, lng: -86.538, desc: "Charter city experimenting with alternative governance and ownership." },
+      { id: "network-miami", name: "Signal Hub - Miami", type: "Network Hub", location: "Miami, USA", lat: 25.7617, lng: -80.1918, desc: "Connector group from Telegram chats bridging ReFi and climate tech." },
+      { id: "network-berlin", name: "Signal Hub - Berlin", type: "Network Hub", location: "Berlin, Germany", lat: 52.52, lng: 13.405, desc: "Active WhatsApp hub coordinating IRL meetups and hack nights." },
+      { id: "network-lagos", name: "Signal Hub - Lagos", type: "Network Hub", location: "Lagos, Nigeria", lat: 6.5244, lng: 3.3792, desc: "Grassroots connector network for regen founders across West Africa." },
+      { id: "network-cape-town", name: "Signal Hub - Cape Town", type: "Network Hub", location: "Cape Town, South Africa", lat: -33.9249, lng: 18.4241, desc: "Regional ReFi cluster linking ocean, agri, and on-chain communities." },
+      { id: "network-nairobi", name: "Signal Hub - Nairobi", type: "Network Hub", location: "Nairobi, Kenya", lat: -1.2864, lng: 36.8172, desc: "Connector map of Telegram groups around smallholder regen pilots." },
+      { id: "network-medellin", name: "Signal Hub - Medellín", type: "Network Hub", location: "Medellín, Colombia", lat: 6.2442, lng: -75.5812, desc: "Density of DeSci and public goods hackers visible via chat activity." },
+      { id: "network-sydney", name: "Signal Hub - Sydney", type: "Network Hub", location: "Sydney, Australia", lat: -33.8688, lng: 151.2093, desc: "APAC cluster mixing climate activism and regenerative startups." },
+      { id: "network-manila", name: "Signal Hub - Manila", type: "Network Hub", location: "Manila, Philippines", lat: 14.5995, lng: 120.9842, desc: "SEA coordination node translating regen playbooks for local orgs." },
+      { id: "network-bangalore", name: "Signal Hub - Bengaluru", type: "Network Hub", location: "Bengaluru, India", lat: 12.9716, lng: 77.5946, desc: "Community chat featuring DeSci labs and earth observation engineers." },
+      // Additional nodes from restor.eco and other sources
+      { id: "restor-site-1", name: "Amazon Reforestation Project", type: "ReFi", location: "Manaus, Brazil", lat: -3.1190, lng: -60.0217, desc: "Large-scale reforestation initiative restoring Amazon biodiversity." },
+      { id: "restor-site-2", name: "Great Green Wall", type: "Indigenous", location: "Dakar, Senegal", lat: 14.7167, lng: -17.4677, desc: "African-led initiative to combat desertification across Sahel." },
+      { id: "restor-site-3", name: "Coral Reef Restoration", type: "Ecovillage", location: "Bali, Indonesia", lat: -8.4095, lng: 115.1889, desc: "Community-driven coral reef restoration using Biorock technology." },
+      { id: "restor-site-4", name: "Wetland Restoration Ethiopia", type: "Database/Map", location: "Addis Ababa, Ethiopia", lat: 9.1450, lng: 40.4897, desc: "Restoring highland wetlands to improve water security and agriculture." },
+      { id: "restor-site-5", name: "Mangrove Protection Vietnam", type: "ReFi", location: "Ho Chi Minh City, Vietnam", lat: 10.8231, lng: 106.6297, desc: "Mangrove forests protecting coastlines and sequestering carbon." },
+      { id: "agartha-2", name: "Agartha Eco-Community", type: "Ecovillage", location: "Chiapas, Mexico", lat: 16.8481, lng: -92.2830, desc: "Sustainable living community focused on permaculture and education." },
+      { id: "gen-ecovillage-1", name: "Earthaven Ecovillage", type: "Ecovillage", location: "Black Mountain, USA", lat: 35.6064, lng: -82.2587, desc: "Permaculture-based community in the Appalachian Mountains." },
+      { id: "gen-ecovillage-2", name: "Sieben Linden Ecovillage", type: "Ecovillage", location: "Linden, Germany", lat: 52.0, lng: 14.0, desc: "Eco-community emphasizing natural building and organic farming." },
+      { id: "wwoof-france", name: "WWOOF France Network", type: "Network Hub", location: "Paris, France", lat: 48.8566, lng: 2.3522, desc: "Worldwide Opportunities on Organic Farms host sites across France." },
+      { id: "transition-towns", name: "Transition Towns UK", type: "Network Hub", location: "Totnes, UK", lat: 50.4329, lng: -3.6851, desc: "Resilience-building initiatives in local communities." },
+      { id: "regen-australia", name: "Regen Australia", type: "ReFi", location: "Melbourne, Australia", lat: -37.8136, lng: 144.9631, desc: "Regenerative agriculture and finance projects down under." },
+      { id: "indigenous-brazil", name: "Kayapo Territory", type: "Indigenous", location: "Para, Brazil", lat: -7.0, lng: -52.0, desc: "Indigenous-led conservation of Amazon rainforest territories." },
+      { id: "desci-europe", name: "DeSci Europe Hub", type: "Tech", location: "Zurich, Switzerland", lat: 47.3769, lng: 8.5417, desc: "Decentralized science initiatives fostering open research." },
+      { id: "carbon-credits-africa", name: "Carbon Credits Africa", type: "ReFi", location: "Johannesburg, South Africa", lat: -26.2041, lng: 28.0473, desc: "Platform for African carbon credit projects and verification." },
+      { id: "permaculture-asia", name: "Asia Pacific Permaculture", type: "Ecovillage", location: "Kathmandu, Nepal", lat: 27.7172, lng: 85.3240, desc: "Regional network promoting permaculture design and training." },
+      { id: "open-data-earth", name: "Open Data for Earth", type: "Database/Map", location: "London, UK", lat: 51.5074, lng: -0.1278, desc: "Open geospatial data for environmental monitoring and restoration." },
+      { id: "network-tokyo", name: "Regen Network Tokyo", type: "Network Hub", location: "Tokyo, Japan", lat: 35.6895, lng: 139.6917, desc: "Urban regeneration and sustainability hubs in East Asia." },
+      { id: "biodiversity-hotspot", name: "Cape Floristic Region", type: "Indigenous", location: "Cape Town, South Africa", lat: -33.9249, lng: 18.4241, desc: "Biodiversity hotspot with community conservation efforts." },
+      { id: "refi-india", name: "ReFi India Collective", type: "ReFi", location: "Mumbai, India", lat: 19.0760, lng: 72.8777, desc: "Blockchain-based solutions for sustainable development in India." },
+      { id: "ecovillage-africa", name: "Konohas Eco-Village", type: "Ecovillage", location: "Nairobi, Kenya", lat: -1.2921, lng: 36.8219, desc: "African ecovillage focusing on agroecology and youth empowerment." },
+      // Additional nodes from individuals in the regenerative community WhatsApp group, focusing on their organizations with positive ground impact
+      { id: "dudley-leggett-org", name: "Regenesis Group", type: "Network Hub", location: "London, UK", lat: 51.5074, lng: -0.1278, desc: "Dudley Leggett's organization promoting regenerative practices in urban planning and community building." },
+      { id: "julia-becker-org", name: "Regeneration Mission", type: "ReFi", location: "Berlin, Germany", lat: 52.52, lng: 13.405, desc: "Julia Becker's initiative on a mission of regeneration, focusing on sustainable tech and community networks." },
+      { id: "tree-willard-org", name: "Water Unity Networks", type: "Ecovillage", location: "California, USA", lat: 36.7783, lng: -119.4179, desc: "Tree Willard's work with Water Unity Networks on water stewardship and cultural spirit in indigenous communities." },
+      { id: "katie-hillborn-org", name: "NextGen Stewardship", type: "Indigenous", location: "Kermode Park, Canada", lat: 54.0, lng: -129.0, desc: "Katie Hillborn's NextGen Stewardship projects in indigenous land protection and youth empowerment." },
+      { id: "victor-vorski-org", name: "Regenerative Ecosystem Systems", type: "Tech", location: "Sydney, Australia", lat: -33.8688, lng: 151.2093, desc: "Victor Vorski's building of regenerative ecosystems through tech and community-driven solutions." },
+      { id: "elena-keller-org", name: "Positive Planetary Transition", type: "Network Hub", location: "Moscow, Russia", lat: 55.7558, lng: 37.6173, desc: "Elena Keller's mission for positive planetary transitions via collaborative networks." },
+      { id: "marcelo-shama-org", name: "Gaia HUB", type: "Ecovillage", location: "Sao Paulo, Brazil", lat: -23.5505, lng: -46.6333, desc: "Marcelo Shama's Gaia HUB for unified regenerative living and earth stewardship." },
+      { id: "scarlet-ai-org", name: "Scarlet Global AI", type: "Tech", location: "Global (Remote)", lat: 0, lng: 0, desc: "Relational AI unified network by Scarlet for positive impact in AI-driven regeneration." },
+      { id: "brad-nye-org", name: "Regen Ecosystem Admin", type: "Network Hub", location: "San Francisco, USA", lat: 37.7749, lng: -122.4194, desc: "Brad Nye's administrative role in regenerative ecosystems and community coordination." },
+      { id: "jess-allen-org", name: "Glowacki Initiatives", type: "ReFi", location: "New York, USA", lat: 40.7128, lng: -74.0060, desc: "Jess Allen Glowacki's work on glowing regenerative finance and impact projects." },
+      { id: "starseed-village", name: "Starseed Village", type: "Ecovillage", location: "Lake Atitlán, Guatemala", lat: 14.742, lng: -91.155, desc: "Regenerative starseed community fostering positive impact, spiritual ecology, and sustainable living in Guatemala." }
+    ];
+
+    const searchInput = document.getElementById("search");
+    const listEl = document.getElementById("list");
+    const legendEl = document.getElementById("legend");
+    const filterGroup = document.getElementById("filterGroup");
+    const countLabel = document.getElementById("countLabel");
+    const continentLabel = document.getElementById("continentLabel");
+    const toggleSidebar = document.getElementById("toggleSidebar");
+    const sidebar = document.getElementById("sidebar");
+
+    const map = L.map("map", {
+      zoomControl: true,
+      worldCopyJump: true
+    }).setView([10, -20], 2);
+
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom: 18,
+      attribution: "© OpenStreetMap contributors"
+    }).addTo(map);
+
+    const clusterGroup = L.markerClusterGroup({
+      showCoverageOnHover: false,
+      spiderfyOnMaxZoom: true,
+      disableClusteringAtZoom: 8
+    });
+
+    const markerIndex = new Map();
+    map.addLayer(clusterGroup);
+
+    function renderLegend() {
+      legendEl.innerHTML = "";
+      Object.entries(categories).forEach(([key, meta]) => {
+        const span = document.createElement("span");
+        span.innerHTML = `<span class="dot" style="background:${meta.color};"></span>${meta.label}`;
+        legendEl.appendChild(span);
+      });
+    }
+
+    function renderFilters(active) {
+      filterGroup.innerHTML = "";
+      Object.entries(categories).forEach(([type, meta]) => {
+        const id = `filter-${type.replace(/\\s+/g, "-").toLowerCase()}`;
+        const wrapper = document.createElement("label");
+        wrapper.className = `filter-chip ${active.has(type) ? "active" : ""}`;
+        wrapper.innerHTML = `
+          <input type="checkbox" id="${id}" ${active.has(type) ? "checked" : ""} data-type="${type}">
+          <span class="dot" style="background:${meta.color};"></span>
+          <span>${type}</span>
+        `;
+        filterGroup.appendChild(wrapper);
+      });
+    }
+
+    function buildPopup(node) {
+      const color = categories[node.type]?.color ?? "#72f2c0";
+      return `
+        <div style="min-width:220px;font-family:'Space Grotesk',sans-serif;color:#0f172a;">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+            <span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:${color};"></span>
+            <strong>${node.name}</strong>
+          </div>
+          <div style="color:#3c475f;font-size:12px;margin-bottom:6px;">${node.location} • ${node.type}</div>
+          <div style="color:#1c2335;font-size:13px;line-height:1.4;">${node.desc}</div>
+        </div>
+      `;
+    }
+
+    function renderMarkers(filtered) {
+      clusterGroup.clearLayers();
+      markerIndex.clear();
+      filtered.forEach((node) => {
+        const color = categories[node.type]?.color ?? "#72f2c0";
+        const marker = L.circleMarker([node.lat, node.lng], {
+          radius: 9,
+          weight: 2,
+          opacity: 0.9,
+          color,
+          fillColor: color,
+          fillOpacity: 0.35
+        }).bindPopup(buildPopup(node));
+
+        markerIndex.set(node.id, marker);
+        clusterGroup.addLayer(marker);
+      });
+    }
+
+    function renderList(filtered) {
+      listEl.innerHTML = "";
+      filtered.forEach((node) => {
+        const color = categories[node.type]?.color ?? "#72f2c0";
+        const card = document.createElement("div");
+        card.className = "card";
+        card.dataset.id = node.id;
+        card.innerHTML = `
+          <div class="meta">
+            <span class="badge" style="border-color:${color};">
+              <span class="dot" style="background:${color};"></span>${node.type}
+            </span>
+            <span>${node.location}</span>
+          </div>
+          <div class="name">${node.name}</div>
+          <p class="desc">${node.desc}</p>
+        `;
+        card.addEventListener("click", () => focusNode(node.id));
+        listEl.appendChild(card);
+      });
+    }
+
+    function filterData(activeTypes, query) {
+      const q = query.trim().toLowerCase();
+      return nodes.filter((node) => {
+        const matchesType = activeTypes.has(node.type);
+        const searchable = `${node.name} ${node.location} ${node.desc} ${node.type}`.toLowerCase();
+        const matchesQuery = !q || searchable.includes(q);
+        return matchesType && matchesQuery;
+      });
+    }
+
+    function focusNode(id) {
+      const marker = markerIndex.get(id);
+      if (!marker) return;
+      map.setView(marker.getLatLng(), Math.max(map.getZoom(), 4));
+      marker.openPopup();
+    }
+
+    function bindEvents(activeTypes) {
+      searchInput.addEventListener("input", () => update(activeTypes));
+      filterGroup.addEventListener("change", (evt) => {
+        if (evt.target instanceof HTMLInputElement && evt.target.dataset.type) {
+          const type = evt.target.dataset.type;
+          if (evt.target.checked) activeTypes.add(type);
+          else activeTypes.delete(type);
+          renderFilters(activeTypes);
+          update(activeTypes);
+        }
+      });
+      toggleSidebar.addEventListener("click", () => {
+        sidebar.classList.toggle("open");
+        listEl.classList.toggle("open");
+      });
+    }
+
+    function update(activeTypes) {
+      const filtered = filterData(activeTypes, searchInput.value);
+      countLabel.textContent = `${filtered.length} active nodes`;
+      renderList(filtered);
+      renderMarkers(filtered);
+      const continents = new Set(
+        filtered.map((n) => {
+          const lat = n.lat;
+          if (lat > 35) return "North Atlantic";
+          if (lat > 0 && lat <= 35) return "Tropics";
+          if (lat <= 0 && lat > -35) return "South Atlantic";
+          return "Global South";
+        })
+      );
+      continentLabel.textContent = continents.size > 3 ? "Global" : Array.from(continents).join(" · ");
+    }
+
+    function init() {
+      const activeTypes = new Set(Object.keys(categories));
+      renderLegend();
+      renderFilters(activeTypes);
+      bindEvents(activeTypes);
+      update(activeTypes);
+    }
+
+    init();
+  </script>
+</body>
+</html>
