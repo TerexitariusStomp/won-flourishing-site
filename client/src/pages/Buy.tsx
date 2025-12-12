@@ -55,7 +55,7 @@ export default function Buy() {
           </div>
           <div className="bridge-nav-links">
             <Link href="/" className="bridge-nav-link">
-              <- Back home
+              ← Back home
             </Link>
             <Link href="/bridge" className="bridge-nav-link">
               Bridge
