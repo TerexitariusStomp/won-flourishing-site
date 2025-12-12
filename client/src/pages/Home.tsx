@@ -182,7 +182,7 @@ export default function Home() {
 
               <div className="relative">
                 <img
-                  src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6"auto=format&fit=crop&w=1200&q=80"
+                  src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1200&q=80"
                   alt="Plant flourishing in eco-village"
                   className="aspect-square w-full rounded-[2rem] overflow-hidden shadow-2xl rotate-3 hover:rotate-0 transition-transform duration-700 object-cover"
                   loading="lazy"
