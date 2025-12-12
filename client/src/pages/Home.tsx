@@ -261,14 +261,14 @@ export default function Home() {
                   <div
                     key={i}
                     className={`bg-white p-8 rounded-2xl shadow-sm border border-border hover:shadow-md transition-shadow group ${
-                      item.reveal " "overflow-hidden relative" : ""
+                      item.reveal ? "overflow-hidden relative" : ""
                     }`}
                   >
                     <span className="text-6xl font-display font-bold text-black/5 mb-4 block">{item.step}</span>
                     <h3 className="font-display text-xl font-bold mb-3">{item.title}</h3>
                     <p
                       className={`text-muted-foreground transition-all duration-200 ${
-                        item.reveal " "opacity-0 group-hover:opacity-100 translate-y-2" : ""
+                        item.reveal ? "opacity-0 group-hover:opacity-100 translate-y-2" : ""
                       }`}
                     >
                       {item.desc}
