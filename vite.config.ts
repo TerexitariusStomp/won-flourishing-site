@@ -6,7 +6,8 @@ import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
 import { metaImagesPlugin } from "./vite-plugin-meta-images";
 
 export default defineConfig({
-  base: "/won-flourishing-site/",
+  // Use root-relative assets so custom domains (e.g., templeearth.cc) load correctly
+  base: "/",
   plugins: [
     react(),
     runtimeErrorOverlay(),
