@@ -209,7 +209,7 @@ export default function Home() {
               <div>
                 <h2 className="font-display text-4xl md:text-5xl font-bold mb-6">Ecovillages in Motion</h2>
                 <div className="space-y-6 text-lg text-muted-foreground leading-relaxed">
-                  <p>Our services focus on one ecovillage at a time to put it into motion by creating its cryptocurrency in a proven and abundant system that we organically network from community to community.</p>
+                  <p>We support ecovillages of every size and climate, starting where momentum is strong and building the tools that help each community thrive.</p>
                   <p>Each launch is built for the next village to plug in, compounding trust, liquidity, and shared tools so regenerative teams can focus on their land and people.</p>
                 </div>
 
@@ -232,34 +232,11 @@ export default function Home() {
               <div className="relative">
                 <img
                   src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1200&q=80"
-                  alt="Plant flourishing in eco-village"
+                  alt="Ecovillage landscape"
                   className="aspect-square w-full rounded-[2rem] overflow-hidden shadow-2xl rotate-3 hover:rotate-0 transition-transform duration-700 object-cover"
                   loading="lazy"
                   decoding="async"
                 />
-                <div className="absolute -bottom-10 -left-10 glass p-6 rounded-2xl max-w-xs shadow-xl hidden md:block">
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="h-10 w-10 rounded-full bg-primary/15 text-primary font-display font-bold grid place-items-center">
-                      AS
-                    </div>
-                    <div>
-                      <p className="font-display font-semibold text-base leading-tight">Andrew Sealy</p>
-                      <p className="text-[11px] uppercase tracking-[0.2em] text-primary/80 leading-tight">Quantum Land Base</p>
-                    </div>
-                  </div>
-                  <p className="text-xs md:text-sm font-medium leading-snug max-w-[230px]">
-                    Yoga instructor and steward of land-base-backed value systems, founder of Quantum Land Base.
-                  </p>
-                </div>
-                <div className="absolute -bottom-4 left-40 glass p-2 rounded-xl shadow-lg hidden md:block">
-                  <img
-                    src="https://plum-deep-cougar-254.mypinata.cloud/ipfs/bafkreihrpkgveailxlgekjdzpswa6nf2vsbaxbnoplkxsvpwrb52zgriwe"
-                    alt="Andrew Sealy"
-                    className="w-24 h-24 rounded-lg object-cover"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </div>
               </div>
             </motion.div>
           </div>
