@@ -216,7 +216,7 @@ export default function Home() {
                 <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-6">
                   {[
                     { icon: Shield, title: "Stewardship", desc: "Redeemable, interchangeable land-base-backed value systems stewarded with care." },
-                    { icon: Users, title: "Community", desc: "Yoga-led presence, neighbors included." },
+                    { icon: Users, title: "Community", desc: "Diverse ecovillages blending indigenous wisdom, permaculture practices, and innovative technologies to foster sustainable, abundant communities." },
                     { icon: Coins, title: "Reciprocity", desc: "Value loops back into the soil and people." },
                     { icon: Activity, title: "Vitality", desc: "Movement, ritual, and daily practice." }
                   ].map((item, i) => (
