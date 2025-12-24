@@ -30,6 +30,49 @@ const stagger = {
   visible: { transition: { staggerChildren: 0.1 } }
 };
 
+const supporterTiers = [
+  {
+    name: "Seed Supporter",
+    amount: "50 WON",
+    note: "Donate or stake",
+    perks: [
+      "Logo placement on the ecosystem supporter wall",
+      "Monthly on-chain impact recap",
+      "Priority invites to community calls"
+    ]
+  },
+  {
+    name: "Builder Circle",
+    amount: "100 WON",
+    note: "Donate or stake",
+    perks: [
+      "Discord buy-in + Builder Circle role",
+      "Prioritize your project for tokenization review",
+      "Access to steward-only strategy threads"
+    ]
+  },
+  {
+    name: "Steward Collective",
+    amount: "250 WON",
+    note: "Donate or stake",
+    perks: [
+      "Co-create quarterly ecosystem roadmaps",
+      "Early access to partner drops and launches",
+      "Featured on the ecosystem map spotlight"
+    ]
+  },
+  {
+    name: "Guardian Guild",
+    amount: "500 WON",
+    note: "Donate or stake",
+    perks: [
+      "Private governance salons with core team",
+      "Dedicated onboarding for regional initiatives",
+      "Premium supporter badge + co-branding options"
+    ]
+  }
+];
+
 export default function Home() {
   const [showJoin, setShowJoin] = useState(false);
   const [atBottom, setAtBottom] = useState(false);
@@ -369,6 +412,52 @@ export default function Home() {
                   ))}
                 </div>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Ecosystem Stakeholder Tiers */}
+        <section id="tiers" className="py-24 md:py-32 bg-secondary/20 border-t border-border/60">
+          <div className="container mx-auto px-6">
+            <div className="max-w-3xl">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-3">
+                Ecosystem Stakeholder Tiers
+              </p>
+              <h2 className="font-display text-4xl md:text-5xl font-bold mb-6">
+                Stake WON, unlock shared upside.
+              </h2>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                Supporters who donate or stake WON receive tiered benefits, visibility, and deeper access to the regenerative roadmap.
+              </p>
+            </div>
+
+            <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+              {supporterTiers.map((tier) => (
+                <div
+                  key={tier.name}
+                  className="bg-white rounded-3xl border border-border p-6 shadow-sm hover:shadow-md transition-shadow flex flex-col"
+                >
+                  <div className="mb-4">
+                    <p className="text-sm uppercase tracking-[0.2em] text-primary font-semibold">{tier.note}</p>
+                    <h3 className="font-display text-2xl font-bold mt-2">{tier.name}</h3>
+                    <p className="text-3xl font-display font-bold text-foreground mt-3">{tier.amount}</p>
+                  </div>
+                  <ul className="space-y-3 text-sm text-muted-foreground flex-1">
+                    {tier.perks.map((perk) => (
+                      <li key={perk} className="flex gap-2">
+                        <CheckCircle className="w-4 h-4 text-primary mt-0.5" />
+                        <span>{perk}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <Link
+                    href="/buy"
+                    className="mt-6 inline-flex items-center justify-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-2 text-sm font-semibold text-primary hover:bg-primary/20 transition-colors"
+                  >
+                    Get WON <ArrowUpRight className="w-4 h-4" />
+                  </Link>
+                </div>
+              ))}
             </div>
           </div>
         </section>
