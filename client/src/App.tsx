@@ -20,6 +20,8 @@ import TokenizationPage from "@/pages/Tokenization";
 import ApyCalculatorPage from "@/pages/ApyCalculator";
 import ProjectFormPage from "@/pages/ProjectForm";
 import PrioritizationPage from "@/pages/Prioritization";
+import StakePage from "@/pages/Stake";
+import StakeProjectsPage from "@/pages/StakeProjects";
 import NotFound from "@/pages/not-found";
 
 // Router component scoped to the Vite base path (GitHub Pages needs the repo name prefix)
@@ -39,6 +41,8 @@ function AppRouter() {
         <Route path="/apy" component={ApyCalculatorPage} />
         <Route path="/projects/submit" component={ProjectFormPage} />
         <Route path="/prioritization" component={PrioritizationPage} />
+        <Route path="/stake" component={StakePage} />
+        <Route path="/stake/projects" component={StakeProjectsPage} />
         <Route component={NotFound} />
       </Switch>
     </WouterRouter>
