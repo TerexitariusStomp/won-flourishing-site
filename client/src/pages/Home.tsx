@@ -74,6 +74,7 @@ export default function Home() {
               </Link>
               <Link href="/stablecoin" className="hover:text-primary transition-colors">Stablecoin</Link>
               <Link href="/tokenization" className="hover:text-primary transition-colors">Tokenization</Link>
+              <Link href="/prioritization" className="hover:text-primary transition-colors">Prioritization</Link>
             </div>
             {showJoin && (
               <a
