@@ -72,6 +72,9 @@ export default function Home() {
               <Link href="/buy" className="hover:text-primary transition-colors">
                 Buy WON
               </Link>
+              <Link href="/stake" className="hover:text-primary transition-colors">
+                Stake
+              </Link>
               <Link href="/stablecoin" className="hover:text-primary transition-colors">Stablecoin</Link>
               <Link href="/tokenization" className="hover:text-primary transition-colors">Tokenization</Link>
             </div>
