@@ -599,6 +599,7 @@ export default function Home() {
               <div>
                 <h4 className="font-bold mb-6 text-white text-2xl">Platform</h4>
                 <ul className="space-y-4 text-white/60 text-[17px] leading-relaxed">
+                  <li><Link href="/marketplace" className="hover:text-primary transition-colors">Marketplace</Link></li>
                   <li><Link href="/stablecoin" className="hover:text-primary transition-colors">Stablecoin</Link></li>
                   <li><Link href="/tokenization" className="hover:text-primary transition-colors">Tokenization</Link></li>
                   <li><a href="#" className="hover:text-primary transition-colors">Governance</a></li>
