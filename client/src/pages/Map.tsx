@@ -6,8 +6,8 @@ import "leaflet.markercluster/dist/MarkerCluster.css";
 import "leaflet.markercluster/dist/MarkerCluster.Default.css";
 import "leaflet.markercluster";
 import "./map.css";
-
-type Category = { color: string; label: string };
+import { projectCategories } from "@/data/projectCategories";
+import type { Project } from "@shared/schema";
 
 type MapNode = {
   id: string;
@@ -19,27 +19,7 @@ type MapNode = {
   desc: string;
 };
 
-const categories: Record<string, Category> = {
-  // Platform lenses
-  "Restor.eco": { color: "#10b981", label: "Restor.eco" },
-  "Karma HQ": { color: "#f97316", label: "Karma HQ / Grants" },
-  "Giveth.io": { color: "#a855f7", label: "Giveth.io" },
-  "Toucan Protocol": { color: "#0ea5e9", label: "Toucan Protocol" },
-  Coorest: { color: "#f43f5e", label: "Coorest" },
-  Nori: { color: "#6b7280", label: "Nori (archived)" },
-  "Regen Network": { color: "#22c55e", label: "Regen Network" },
-  KlimaDAO: { color: "#14b8a6", label: "KlimaDAO" },
-  Terra0: { color: "#6366f1", label: "Terra0" },
-  // Legacy community lenses
-  ReFi: { color: "#3bc9db", label: "ReFi / Climate DeFi" },
-  Indigenous: { color: "#f59f00", label: "Indigenous / Ancestral" },
-  Tech: { color: "#845ef7", label: "Tech / DeSci" },
-  "Network State": { color: "#12b886", label: "Network State" },
-  Ecovillage: { color: "#fcc419", label: "Ecovillage" },
-  "Database/Map": { color: "#4c6ef5", label: "Database / Map infra" },
-  "Network Hub": { color: "#f06595", label: "Network hub (signal)" },
-  Restoration: { color: "#10b981", label: "Restoration Projects" }
-};
+const categories = projectCategories;
 
 const nodes: MapNode[] = [
   // Platform-tagged sample sites
@@ -806,6 +786,7 @@ export default function MapPage() {
   const markerIndexRef = useRef<Map<string, L.CircleMarker>>(new Map());
   const [query, setQuery] = useState("");
   const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [submittedNodes, setSubmittedNodes] = useState<MapNode[]>([]);
   const [activeTypes, setActiveTypes] = useState<Set<string>>(
     () => new Set(Object.keys(categories))
   );
@@ -839,15 +820,44 @@ export default function MapPage() {
     };
   }, []);
 
+  useEffect(() => {
+    const loadProjects = async () => {
+      try {
+        const response = await fetch("/api/projects");
+        if (!response.ok) return;
+        const payload = (await response.json()) as Project[];
+        const mapped = payload.map((project) => ({
+          id: project.id,
+          name: project.name,
+          type: project.type,
+          location: project.location,
+          lat: project.lat,
+          lng: project.lng,
+          desc: project.desc
+        }));
+        setSubmittedNodes(mapped);
+      } catch {
+        // Ignore fetch errors; map still renders static nodes.
+      }
+    };
+
+    loadProjects();
+  }, []);
+
+  const allNodes = useMemo(
+    () => [...nodes, ...submittedNodes],
+    [submittedNodes]
+  );
+
   const filteredNodes = useMemo(() => {
     const q = query.trim().toLowerCase();
-    return nodes.filter((node) => {
+    return allNodes.filter((node) => {
       const matchesType = activeTypes.has(node.type);
       const searchable = `${node.name} ${node.location} ${node.desc} ${node.type}`.toLowerCase();
       const matchesQuery = !q || searchable.includes(q);
       return matchesType && matchesQuery;
     });
-  }, [activeTypes, query]);
+  }, [activeTypes, allNodes, query]);
 
   useEffect(() => {
     const clusterGroup = clusterGroupRef.current;
@@ -921,6 +931,9 @@ export default function MapPage() {
         <div className="map-actions">
           <Link href="/" className="map-link">
             Back home
+          </Link>
+          <Link href="/projects/submit" className="map-link">
+            Submit project
           </Link>
           <button
             className="map-link map-toggle"
