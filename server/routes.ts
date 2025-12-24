@@ -30,5 +30,39 @@ export async function registerRoutes(
     res.status(201).json(project);
   });
 
+  app.post("/api/trust-scores", (req, res) => {
+    const { signals } = req.body ?? {};
+
+    if (!Array.isArray(signals)) {
+      res.status(400).json({ message: "Signals payload must be an array." });
+      return;
+    }
+
+    const scores = signals
+      .filter((item) => item && typeof item.id === "string")
+      .map((item) => {
+        const evidence = Number(item.evidence ?? 0);
+        const delivery = Number(item.delivery ?? 0);
+        const transparency = Number(item.transparency ?? 0);
+        const community = Number(item.community ?? 0);
+
+        const weightedScore =
+          evidence * 0.3 + delivery * 0.3 + transparency * 0.2 + community * 0.2;
+        const score = Math.max(0, Math.min(100, Math.round(weightedScore)));
+        const confidence = Math.max(
+          0,
+          Math.min(1, (evidence + delivery + transparency + community) / 400)
+        );
+
+        return {
+          id: item.id,
+          score,
+          confidence: Number(confidence.toFixed(2))
+        };
+      });
+
+    res.json({ scores });
+  });
+
   return httpServer;
 }
