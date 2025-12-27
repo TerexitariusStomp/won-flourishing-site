@@ -5,12 +5,8 @@ import path from "path";
 import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
 import { metaImagesPlugin } from "./vite-plugin-meta-images";
 
-const repoName = process.env.GITHUB_REPOSITORY?.split("/")[1];
-const basePath =
-  process.env.VITE_BASE_PATH ??
-  (process.env.GITHUB_ACTIONS === "true" && repoName
-    ? `/${repoName}/`
-    : "/");
+// Default to root ("/"). Override via VITE_BASE_PATH when hosting under a subpath.
+const basePath = process.env.VITE_BASE_PATH ?? "/";
 
 export default defineConfig({
   // Keep GitHub Pages happy by prefixing assets with the repo name; can be overridden via VITE_BASE_PATH
