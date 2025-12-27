@@ -112,9 +112,6 @@ export default function Home() {
               <Link href="/whitelist" className="hover:text-primary transition-colors">
                 Whitelist
               </Link>
-              <Link href="/trust-graph" className="hover:text-primary transition-colors">
-                Trust Graph
-              </Link>
               <Link href="/apy" className="hover:text-primary transition-colors">
                 APY Calculator
               </Link>
@@ -252,13 +249,59 @@ export default function Home() {
                     Fees, LP rewards, and staking yields recycle into new tokenizations and buy pressure, reinforcing the regenerative loop instead of extractive drift.
                   </p>
                 </div>
-                <div className="glass p-5 rounded-2xl border border-border">
-                  <p className="text-sm font-semibold text-primary mb-1">Everywhere payments (coming)</p>
-                  <p className="text-muted-foreground">
-                    Impact tokens in the WON stack are being wired to Crassula card-issuing connectors (Visa/Mastercard) so contributors can pay anywhere while keeping impact-linked rewards.
-                  </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Impact Card */}
+        <section className="py-20 bg-foreground text-background">
+          <div className="container mx-auto px-6 grid md:grid-cols-2 gap-14 items-center">
+            <div className="space-y-4">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-3">WON Card</p>
+              <h2 className="font-display text-4xl md:text-5xl font-bold leading-tight">
+                Spend your impact rewards anywhere.
+              </h2>
+              <p className="text-lg text-white/80 leading-relaxed">
+                A dedicated WON card is being prepared so supporters can spend wherever Visa and Mastercard are accepted while keeping rewards on-chain. Balances draw from your WON holdings; impact remains auditable.
+              </p>
+              <div className="flex flex-wrap gap-3 text-sm text-white/80">
+                <span className="px-3 py-2 rounded-full bg-white/10 border border-white/20">On-chain balance funding</span>
+                <span className="px-3 py-2 rounded-full bg-white/10 border border-white/20">Visa / Mastercard acceptance</span>
+                <span className="px-3 py-2 rounded-full bg-white/10 border border-white/20">Impact rewards preserved</span>
+              </div>
+            </div>
+            <div className="glass bg-white/10 border border-white/20 rounded-3xl p-8 shadow-2xl text-background">
+              <div className="flex items-center justify-between mb-8">
+                <div>
+                  <p className="text-sm uppercase tracking-[0.2em] text-primary">WON Impact Card</p>
+                  <p className="text-2xl font-display font-bold">Preview</p>
+                </div>
+                <div className="text-right text-sm text-white/70">
+                  <p>Card Network</p>
+                  <p className="font-semibold text-white">Visa / Mastercard</p>
                 </div>
               </div>
+              <div className="rounded-2xl bg-gradient-to-br from-primary to-primary/60 text-primary-foreground p-6 shadow-xl">
+                <div className="flex items-center justify-between">
+                  <div className="font-display text-2xl font-bold">WON</div>
+                  <div className="text-sm">Impact Balance</div>
+                </div>
+                <div className="mt-6 text-3xl font-bold tracking-wide">4,820 WON</div>
+                <div className="mt-8 flex items-center justify-between text-sm">
+                  <div>
+                    <p className="opacity-80">Name</p>
+                    <p className="font-semibold">We Won Steward</p>
+                  </div>
+                  <div className="text-right">
+                    <p className="opacity-80">Valid</p>
+                    <p className="font-semibold">12/30</p>
+                  </div>
+                </div>
+              </div>
+              <p className="mt-6 text-sm text-white/70">
+                Load from WON, spend globally, and keep regenerative impact in view.
+              </p>
             </div>
           </div>
         </section>

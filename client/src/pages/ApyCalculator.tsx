@@ -160,6 +160,17 @@ export default function ApyCalculatorPage() {
               Pull your on-chain yield signal, plug in your holdings, and see how the
               WON regenerative flywheel compounds across short and long timelines.
             </p>
+            <p className="text-sm text-muted-foreground mt-2">
+              Source data:{" "}
+              <a
+                href="https://proton.alcor.exchange/analytics/tokens/won-w3won"
+                className="underline"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Alcor WON analytics
+              </a>
+            </p>
           </div>
           <div className="bridge-nav-links">
             <Link href="/" className="bridge-nav-link">

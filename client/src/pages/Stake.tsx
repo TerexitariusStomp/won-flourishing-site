@@ -98,16 +98,13 @@ export default function StakePage() {
             <Link href="/" className="bridge-nav-link">
               Back home
             </Link>
-            <Link href="/stake/projects" className="bridge-nav-link">
-              Impact projects
-            </Link>
             <a
-              href="https://templeearth.cc/prioritization"
+              href="https://wharfkit.com/"
               className="bridge-nav-link"
               target="_blank"
               rel="noreferrer"
             >
-              Prioritization flow
+              Connect wallet (WharfKit)
             </a>
           </div>
         </div>
@@ -137,7 +134,7 @@ export default function StakePage() {
                 </button>
               </div>
               <p className="bridge-muted">
-                Staked WON signals which region gets the single monthly project allocation.
+                Connect with WharfKit, then stake WON to signal which region gets the single monthly project allocation.
               </p>
             </div>
             <div className="bridge-field">
@@ -155,11 +152,11 @@ export default function StakePage() {
 
           <div className="bridge-input-row" style={{ marginTop: 10 }}>
             <button type="button" className="bridge-primary">
-              Signal priority stake
+              Signal priority stake (XPR)
             </button>
             <div className="bridge-banner" style={{ marginTop: 0 }}>
               Wallet connection and on-chain staking will open with the next deployment of the WON
-              staking contract on XPR.
+              staking contract on XPR. Stakes flow via WharfKit.
             </div>
           </div>
 
@@ -208,6 +205,9 @@ export default function StakePage() {
                         <li key={project} className="flex items-center gap-2">
                           <span className="text-emerald-600">•</span>
                           <span>{project}</span>
+                          <button className="ml-auto text-primary text-xs font-semibold">
+                            Stake WON
+                          </button>
                         </li>
                       ))}
                     </ul>

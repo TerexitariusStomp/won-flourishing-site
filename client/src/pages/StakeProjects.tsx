@@ -149,6 +149,10 @@ export default function StakeProjectsPage() {
                     <strong>{project.target}</strong>
                   </div>
                 </div>
+                <div className="mt-3 flex items-center justify-between">
+                  <span className="text-xs text-muted-foreground">Stake WON to back this project</span>
+                  <button className="bridge-primary text-xs px-3 py-1">Stake WON</button>
+                </div>
                 <div className="bridge-banner" style={{ marginTop: 12 }}>
                   {project.update}
                 </div>

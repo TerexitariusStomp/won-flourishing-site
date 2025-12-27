@@ -64,7 +64,7 @@ export default function Marketplace() {
             <h1 className="bridge-title">Example impact tokens</h1>
             <p className="bridge-subhead">
               These listings are illustrative. Each token links out to the Proton Alcor swap so you
-              can explore trading flows without tracking liquidity, routing, or impact fees here.
+              can explore trading flows directly on the exchange.
             </p>
           </div>
           <div className="bridge-nav-links">

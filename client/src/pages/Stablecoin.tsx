@@ -19,8 +19,7 @@ export default function StablecoinPage() {
             <h1 className="bridge-title">Create your own impact-backed stable</h1>
             <p className="bridge-subhead">
               Impact assets once tokenized with us can help create local stablecoins. Explore the
-              Amazonedollar example below while live minting is paused in favor of oracle-backed,
-              on-chain tracking.
+              Amazonedollar example below.
             </p>
           </div>
           <div className="bridge-nav-links">
@@ -42,10 +41,7 @@ export default function StablecoinPage() {
         </div>
 
         <div className="bridge-card">
-          <div className="bridge-banner">
-            Stablecoin example: Amazonedollar. Live minting and pricing will move to on-chain oracle
-            inputs; this embed is for design reference.
-          </div>
+          <div className="bridge-banner">Stablecoin example: Amazonedollar.</div>
           <div className="bridge-embed" style={{ minHeight: "560px" }}>
             <iframe
               src="https://amazonedollar.org/"
@@ -56,10 +52,6 @@ export default function StablecoinPage() {
               style={{ border: "1px solid #ccc", borderRadius: "12px" }}
             />
           </div>
-          <p className="bridge-muted" style={{ marginTop: 12 }}>
-            Make it clear that impact assets once tokenized can help bootstrap stable, local
-            currencies. Oracle data feeds replace placeholders as soon as they post on-chain.
-          </p>
         </div>
       </div>
     </div>
