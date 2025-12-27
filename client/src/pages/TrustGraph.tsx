@@ -483,7 +483,7 @@ export default function TrustGraph() {
                           fill="#0f172a"
                           fontWeight={600}
                         >
-                          {score ? score : "—"}
+                          {score ?? "?"}
                         </text>
                         <text
                           x={pos.x}
@@ -635,7 +635,7 @@ export default function TrustGraph() {
                         <div className="text-right">
                           <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Trust score</p>
                           <p className="text-lg font-semibold">
-                            {scoreInfo ? scoreInfo.score : "—"}
+                            {scoreInfo?.score ?? "?"}
                             {scoreInfo && <span className="text-xs text-muted-foreground">/100</span>}
                           </p>
                           {scoreInfo && (
