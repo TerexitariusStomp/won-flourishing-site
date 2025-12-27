@@ -1,4 +1,4 @@
-import { useLocation } from "wouter";
+import { Link, useLocation } from "wouter";
 import SiteLayout from "@/components/SiteLayout";
 import "./bridge.css";
 
@@ -146,7 +146,12 @@ export default function StakeProjectsPage() {
                 </div>
                 <div className="mt-3 flex items-center justify-between">
                   <span className="text-xs text-muted-foreground">Stake WON to back this project</span>
-                  <button className="bridge-primary text-xs px-3 py-1">Stake WON</button>
+                  <Link
+                    href={`/stake?region=${regionKey}#stake-form`}
+                    className="bridge-primary text-xs px-3 py-1"
+                  >
+                    Stake WON
+                  </Link>
                 </div>
                 <div className="bridge-banner" style={{ marginTop: 12 }}>
                   {project.update}

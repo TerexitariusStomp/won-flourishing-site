@@ -52,7 +52,7 @@ export default function SiteFooter() {
           </div>
         </div>
         <div className="mt-16 text-center">
-          <h1 className="font-display text-4xl md:text-6xl font-bold tracking-tight">Explore the New Earth</h1>
+          <h1 className="font-display text-4xl md:text-6xl font-bold tracking-tight">Explore Temple Earth</h1>
         </div>
         <div className="border-t border-white/10 mt-16 pt-8 text-center text-white/30 text-sm">
           (c) 2024 Won Flourishing Network. All rights reserved.

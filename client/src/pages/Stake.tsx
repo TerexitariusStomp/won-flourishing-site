@@ -1,5 +1,6 @@
 import { ArrowRight } from "lucide-react";
-import { Link } from "wouter";
+import { useEffect, useState } from "react";
+import { Link, useLocation } from "wouter";
 import SiteLayout from "@/components/SiteLayout";
 import "./bridge.css";
 
@@ -74,6 +75,18 @@ const formatter = new Intl.NumberFormat("en-US", {
 });
 
 export default function StakePage() {
+  const [location] = useLocation();
+  const search = location.split("?")[1] ?? "";
+  const regionParam = new URLSearchParams(search).get("region") ?? "";
+  const resolvedRegion = regions.some((region) => region.id === regionParam)
+    ? regionParam
+    : regions[0].id;
+  const [selectedRegion, setSelectedRegion] = useState(resolvedRegion);
+
+  useEffect(() => {
+    setSelectedRegion(resolvedRegion);
+  }, [resolvedRegion]);
+
   return (
     <SiteLayout>
       <div className="bridge-shell">
@@ -97,7 +110,7 @@ export default function StakePage() {
             </div>
           </div>
 
-        <div className="bridge-card">
+        <div className="bridge-card" id="stake-form">
           <div className="bridge-pill-grid">
             {stats.map((stat) => (
               <div key={stat.label}>
@@ -127,7 +140,11 @@ export default function StakePage() {
             </div>
             <div className="bridge-field">
               <label className="bridge-label">Select region</label>
-              <select className="bridge-select">
+              <select
+                className="bridge-select"
+                value={selectedRegion}
+                onChange={(event) => setSelectedRegion(event.target.value)}
+              >
                 {regions.map((region) => (
                   <option key={region.id} value={region.id}>
                     {region.name}
@@ -139,14 +156,9 @@ export default function StakePage() {
           </div>
 
           <div className="bridge-input-row" style={{ marginTop: 10 }}>
-            <a
-              className="bridge-primary"
-              href="https://github.com/XPRNetwork/proton.contracts?utm_source=perplexity"
-              target="_blank"
-              rel="noreferrer"
-            >
+            <button className="bridge-primary" type="button">
               Connect & stake WON
-            </a>
+            </button>
             <div className="bridge-banner" style={{ marginTop: 0 }}>
               Powered by Proton contracts on XPR. Staking does not remove WON from your ownership,
               and rewards may be earned depending on distribution schedules.
@@ -198,9 +210,12 @@ export default function StakePage() {
                         <li key={project} className="flex items-center gap-2">
                           <span className="text-emerald-600">•</span>
                           <span>{project}</span>
-                          <button className="ml-auto text-primary text-xs font-semibold">
+                          <a
+                            className="ml-auto text-primary text-xs font-semibold"
+                            href="#stake-form"
+                          >
                             Stake WON
-                          </button>
+                          </a>
                         </li>
                       ))}
                     </ul>

@@ -73,7 +73,7 @@ export default function Marketplace() {
           <div className="bridge-card">
             <div className="bridge-banner">
               All projects listed are example tokens. Trade routes redirect to Alcor for execution on
-              Proton; liquidity and fees are handled there.
+              Proton.
             </div>
             <div className="bridge-grid" style={{ marginTop: 16 }}>
               {projects.map((project) => (

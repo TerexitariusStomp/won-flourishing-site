@@ -45,8 +45,8 @@ type OracleSnapshot = {
 
 const normalizeRate = (value: number) => {
   if (!Number.isFinite(value)) return DEFAULT_DISTRIBUTION_RATE;
-  if (value > 1) return value / 100;
-  return value;
+  const normalized = value > 1 ? value / 100 : value;
+  return Math.max(0, normalized);
 };
 
 const extractDistributionRate = (row: Record<string, unknown> | undefined) => {
@@ -169,9 +169,11 @@ export default function ApyCalculatorPage() {
   const projections = useMemo(
     () =>
       timelineOptions.map((option) => {
+        const years = option.months / 12;
+        const periods = compoundingPeriods * years;
         const growth = Math.pow(
           1 + oracleSnapshot.distributionRate / compoundingPeriods,
-          option.months
+          periods
         );
         const projectedValue = principal * growth;
         const netYield = projectedValue - principal;
@@ -396,14 +398,6 @@ export default function ApyCalculatorPage() {
               Download PDF
             </button>
 
-            <div className="apy-data-card">
-              <p className="bridge-eyebrow">Display on dashboard</p>
-              <p className="bridge-muted">
-                Embed this module on the website or analytics view to illustrate how WON
-                compounding could support regeneration. Data feeds refresh daily from on-chain
-                distribution and price oracles so estimates stay in sync with XPR activity.
-              </p>
-            </div>
           </aside>
         </div>
       </div>
