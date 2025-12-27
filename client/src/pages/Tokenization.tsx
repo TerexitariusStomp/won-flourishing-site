@@ -18,61 +18,65 @@ type Flow = {
 
 const flows: Flow[] = [
   {
-    title: "Carbon Credit Vault (ERC-4626)",
-    desc: "Deposit carbon credits, name your vault, and show how many tons you are compounding.",
+    title: "Redeemable Goods Token (ECO-VEG)",
+    desc: "A token redeemable only for specific goods or services from an ecovillage.",
     fields: [
-      { label: "Your name", placeholder: "Amina" },
-      { label: "Project name", placeholder: "Cahuita mangrove credits" },
-      { label: "Amount of credits", type: "number", placeholder: "120" },
-      { label: "Expected yield %", type: "number", placeholder: "4.5" },
-      {
-        label: "Reinvest cadence",
-        type: "select",
-        options: ["Auto-compound", "Monthly payout", "Quarterly payout"]
-      }
+      { label: "Token name", placeholder: "Ecovillage Veg Share" },
+      { label: "Symbol", placeholder: "ECO-VEG" },
+      { label: "Redeemable for", placeholder: "Weekly vegetable box" },
+      { label: "Redemption unit", placeholder: "1 token = 1 box" },
+      { label: "Issuing community", placeholder: "Temple Earth Farm" }
     ]
   },
   {
-    title: "Fair-trade Redeemable Land-Base-Backed Value Systems Batch (ERC-6960)",
-    desc: "Tokenize a redeemable, interchangeable land-base-backed value systems batch with layered certifications and who stewarded it.",
+    title: "Renewable Energy Credits",
+    desc: "Each token represents a specific unit of verified renewable energy.",
     fields: [
-      { label: "Batch name", placeholder: "Land-Base Value System - Valley Lot #12" },
-      { label: "Farmer / co-op", placeholder: "Bribri Collective" },
-      { label: "Amount (kg)", type: "number", placeholder: "500" },
-      {
-        label: "Certification type",
-        type: "select",
-        options: ["Organic", "Fair Trade", "Rainforest Alliance", "Direct trade"]
-      },
-      {
-        label: "Destination chain",
-        type: "select",
-        options: ["Ethereum", "Base", "Optimism", "Polygon"]
-      }
+      { label: "Energy source", placeholder: "Solar microgrid" },
+      { label: "Token unit", placeholder: "1 token = 1 kWh" },
+      { label: "Site location", placeholder: "Hilltop array" },
+      { label: "Verification cadence", placeholder: "Monthly meter report" },
+      { label: "Issuing cooperative", placeholder: "Sunrise Energy Co-op" }
     ]
   },
   {
-    title: "Automated Donations (ERC-995)",
-    desc: "Attach a donation stream to every transfer in a social token.",
+    title: "Food Share Tokens",
+    desc: "Community food shares redeemable for harvest pickups.",
     fields: [
-      { label: "Token name", placeholder: "Community Care Token" },
-      { label: "Symbol", placeholder: "CARE" },
-      { label: "Donation percentage", type: "number", placeholder: "2.5" },
-      { label: "Beneficiary address", placeholder: "0x..." }
+      { label: "Share size", placeholder: "Family basket" },
+      { label: "Pickup schedule", placeholder: "Every Friday" },
+      { label: "Season window", placeholder: "May - October" },
+      { label: "Issuing farm", placeholder: "Cascadia CSA" }
     ]
   },
   {
-    title: "Abundant Liquidity Pools",
-    desc: "Seed liquidity with clear intent and who is funded.",
+    title: "Compost Credits",
+    desc: "Each token represents a specific compost allocation.",
     fields: [
-      { label: "Pool name", placeholder: "Eco-village launch pool" },
-      { label: "Initial liquidity amount", type: "number", placeholder: "10,000" },
-      {
-        label: "Project focus",
-        type: "select",
-        options: ["Energy", "Water", "Food", "Housing", "Education"]
-      },
-      { label: "Your wallet", placeholder: "0x..." }
+      { label: "Compost type", placeholder: "Hot-compost blend" },
+      { label: "Token unit", placeholder: "1 token = 1 kg" },
+      { label: "Collection window", placeholder: "Monthly pickup" },
+      { label: "Redemption location", placeholder: "Soil shed" }
+    ]
+  },
+  {
+    title: "Community Labor Hours",
+    desc: "One token equals one hour of agreed community labor.",
+    fields: [
+      { label: "Labor category", placeholder: "Garden care" },
+      { label: "Token unit", placeholder: "1 token = 1 hour" },
+      { label: "Task exchange", placeholder: "Up to 4 hours / week" },
+      { label: "Steward contact", placeholder: "labor@templeearth.cc" }
+    ]
+  },
+  {
+    title: "Festival & Learning Tokens",
+    desc: "Game-like tokens for events, festivals, learning experiences, or low-cost services like room nights and tool lending.",
+    fields: [
+      { label: "Event or service", placeholder: "Harvest festival pass" },
+      { label: "Experience type", placeholder: "Workshop + ritual" },
+      { label: "Token utility", placeholder: "Redeem for entry + meal" },
+      { label: "Redemption window", placeholder: "Festival week" }
     ]
   }
 ];
@@ -91,8 +95,8 @@ export default function TokenizationPage() {
               <p className="bridge-eyebrow">Tokenization Protocols</p>
               <h1 className="bridge-title">Launch Your Impact Asset</h1>
               <p className="bridge-subhead">
-                Example tokenization flows only. We removed live inputs so you can focus on the patterns
-                before opening a production build.
+                Example tokenization flows only. Focus on redeemable goods, energy, compost, and
+                community services before opening a production build.
               </p>
             </div>
           </div>

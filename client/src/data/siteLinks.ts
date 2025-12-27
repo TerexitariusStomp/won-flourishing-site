@@ -13,7 +13,7 @@ export const siteNavLinks: SiteNavLink[] = [
   { label: "Marketplace", href: "/marketplace" },
   { label: "Stablecoin", href: "/stablecoin" },
   { label: "Tokenization", href: "/tokenization" },
-  { label: "Documentation", href: "/docs/templeearth-docs.html" }
+  { label: "Documentation", href: "/docs" }
 ];
 
 export const communityLinks: SiteNavLink[] = [

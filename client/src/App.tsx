@@ -25,6 +25,7 @@ import DashboardPage from "@/pages/Dashboard";
 import ApyCalculatorPage from "@/pages/ApyCalculator";
 import ProjectFormPage from "@/pages/ProjectForm";
 import PrioritizationPage from "@/pages/Prioritization";
+import DocsPage from "@/pages/Docs";
 import NotFound from "@/pages/not-found";
 
 // Router component scoped to the Vite base path (GitHub Pages needs the repo name prefix)
@@ -50,6 +51,8 @@ function AppRouter() {
         <Route path="/projects/submit" component={ProjectFormPage} />
         <Route path="/prioritization" component={PrioritizationPage} />
         <Route path="/apy" component={ApyCalculatorPage} />
+        <Route path="/docs" component={DocsPage} />
+        <Route path="/docs/templeearth-docs.html" component={DocsPage} />
         <Route component={NotFound} />
       </Switch>
     </WouterRouter>

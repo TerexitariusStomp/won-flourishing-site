@@ -161,18 +161,84 @@ export default function Home() {
                   Join the Movement <ArrowUpRight className="w-5 h-5" />
                 </a>
               </motion.div>
-              <motion.div
-                variants={fadeIn}
-                className="glass border border-primary/30 bg-white/60 backdrop-blur-md p-6 rounded-2xl max-w-xl shadow-xl"
-              >
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-2">
-                  Built on Proton
-                </p>
-                <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-                  WON is issued on XPR with stablecoin-backed reserves, giving communities a shared unit for coordinating impact and liquidity.
-                </p>
-              </motion.div>
             </motion.div>
+          </div>
+        </section>
+
+        {/* Eco-Villages Section */}
+        <section id="foundation" className="py-24 md:py-32 relative">
+          <div className="container mx-auto px-6">
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              className="grid md:grid-cols-2 gap-16 items-center"
+            >
+              <div>
+                <h2 className="font-display text-4xl md:text-5xl font-bold mb-6">Ecovillages in Motion</h2>
+                <div className="space-y-6 text-lg text-muted-foreground leading-relaxed">
+                  <p>We support ecovillages of every size and climate, starting where momentum is strong and building the tools that help each community thrive.</p>
+                  <p>Each launch is built for the next village to plug in, compounding trust, liquidity, and shared tools so regenerative teams can focus on their land and people.</p>
+                </div>
+
+                <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  {[
+                    { icon: Shield, title: "Stewardship", desc: "Redeemable, interchangeable land-base-backed value systems stewarded with care." },
+                    { icon: Users, title: "Community", desc: "Diverse ecovillages blending indigenous wisdom, permaculture practices, and innovative technologies to foster sustainable, abundant communities." },
+                    { icon: Coins, title: "Reciprocity", desc: "Value loops back into the soil and people." },
+                    { icon: Activity, title: "Vitality", desc: "Movement, ritual, and daily practice." }
+                  ].map((item, i) => (
+                    <div key={i} className="glass p-6 rounded-2xl hover:border-primary/50 transition-colors group">
+                      <item.icon className="w-8 h-8 text-primary mb-4 group-hover:scale-110 transition-transform" />
+                      <h3 className="font-display font-bold text-lg mb-2">{item.title}</h3>
+                      <p className="text-sm text-muted-foreground">{item.desc}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="relative">
+                <img
+                  src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1200&q=80"
+                  alt="Ecovillage landscape"
+                  className="aspect-square w-full rounded-[2rem] overflow-hidden shadow-2xl rotate-3 hover:rotate-0 transition-transform duration-700 object-cover"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* Impact Section */}
+        <section id="impact" className="py-24 bg-foreground text-background relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-1/2 h-full bg-primary/10 blur-[100px] rounded-full" />
+
+          <div className="container mx-auto px-6 relative z-10">
+            <div className="max-w-4xl mx-auto text-center mb-20">
+              <h2 className="font-display text-4xl md:text-6xl font-bold mb-6">Staking Prioritizes Outcomes</h2>
+              <p className="text-xl text-white/70">
+                Staked WON signals which projects rise to the top of the queue. Stewardship weight guides review priority, funding sequences, and the rollout calendar.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-8">
+              {[
+                { title: "Stake to Signal", desc: "Stake WON to express which initiatives deserve attention first.", color: "bg-emerald-500" },
+                { title: "Priority Queue", desc: "Higher-staked projects move forward faster in the tokenization pipeline.", color: "bg-blue-500" },
+                { title: "Transparent Outcomes", desc: "Progress updates and verification keep priorities accountable to stewards.", color: "bg-amber-500" }
+              ].map((card, i) => (
+                <motion.div
+                  key={i}
+                  whileHover={{ y: -10 }}
+                  className="bg-white/5 border border-white/10 p-8 rounded-3xl backdrop-blur-sm"
+                >
+                  <div className={`w-12 h-12 rounded-full ${card.color} mb-6 opacity-90`} />
+                  <h3 className="font-display text-2xl font-bold mb-4">{card.title}</h3>
+                  <p className="text-white/60 leading-relaxed">{card.desc}</p>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </section>
 
@@ -181,6 +247,9 @@ export default function Home() {
           <div className="container mx-auto px-6">
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-2">
+                  Impact Verified
+                </p>
                 <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-3">
                   Value Alignment
                 </p>
@@ -267,86 +336,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Eco-Villages Section */}
-        <section id="foundation" className="py-24 md:py-32 relative">
-          <div className="container mx-auto px-6">
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              className="grid md:grid-cols-2 gap-16 items-center"
-            >
-              <div>
-                <h2 className="font-display text-4xl md:text-5xl font-bold mb-6">Ecovillages in Motion</h2>
-                <div className="space-y-6 text-lg text-muted-foreground leading-relaxed">
-                  <p>We support ecovillages of every size and climate, starting where momentum is strong and building the tools that help each community thrive.</p>
-                  <p>Each launch is built for the next village to plug in, compounding trust, liquidity, and shared tools so regenerative teams can focus on their land and people.</p>
-                </div>
-
-                <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  {[
-                    { icon: Shield, title: "Stewardship", desc: "Redeemable, interchangeable land-base-backed value systems stewarded with care." },
-                    { icon: Users, title: "Community", desc: "Diverse ecovillages blending indigenous wisdom, permaculture practices, and innovative technologies to foster sustainable, abundant communities." },
-                    { icon: Coins, title: "Reciprocity", desc: "Value loops back into the soil and people." },
-                    { icon: Activity, title: "Vitality", desc: "Movement, ritual, and daily practice." }
-                  ].map((item, i) => (
-                    <div key={i} className="glass p-6 rounded-2xl hover:border-primary/50 transition-colors group">
-                      <item.icon className="w-8 h-8 text-primary mb-4 group-hover:scale-110 transition-transform" />
-                      <h3 className="font-display font-bold text-lg mb-2">{item.title}</h3>
-                      <p className="text-sm text-muted-foreground">{item.desc}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="relative">
-                <img
-                  src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1200&q=80"
-                  alt="Ecovillage landscape"
-                  className="aspect-square w-full rounded-[2rem] overflow-hidden shadow-2xl rotate-3 hover:rotate-0 transition-transform duration-700 object-cover"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-            </motion.div>
-          </div>
-        </section>
-
-        {/* Impact Section */}
-        <section id="impact" className="py-24 bg-foreground text-background relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-1/2 h-full bg-primary/10 blur-[100px] rounded-full" />
-
-          <div className="container mx-auto px-6 relative z-10">
-            <div className="max-w-4xl mx-auto text-center mb-20">
-              <h2 className="font-display text-4xl md:text-6xl font-bold mb-6">Staking Prioritizes Outcomes</h2>
-              <p className="text-xl text-white/70">
-                Staked WON signals which projects rise to the top of the queue. Stewardship weight guides review priority, funding sequences, and the rollout calendar.
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-3 gap-8">
-              {[
-                { title: "Stake to Signal", desc: "Stake WON to express which initiatives deserve attention first.", color: "bg-emerald-500" },
-                { title: "Priority Queue", desc: "Higher-staked projects move forward faster in the tokenization pipeline.", color: "bg-blue-500" },
-                { title: "Transparent Outcomes", desc: "Progress updates and verification keep priorities accountable to stewards.", color: "bg-amber-500" }
-              ].map((card, i) => (
-                <motion.div
-                  key={i}
-                  whileHover={{ y: -10 }}
-                  className="bg-white/5 border border-white/10 p-8 rounded-3xl backdrop-blur-sm"
-                >
-                  <div className={`w-12 h-12 rounded-full ${card.color} mb-6 opacity-90`} />
-                  <h3 className="font-display text-2xl font-bold mb-4">{card.title}</h3>
-                  <p className="text-white/60 leading-relaxed">{card.desc}</p>
-                  <div className="mt-8 flex items-center gap-2 text-sm font-bold uppercase tracking-wider opacity-50">
-                    Impact Verified
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
         {/* Stablecoin Flow */}
         <section id="stablecoin" className="py-24 md:py-32 bg-secondary/30">
           <div className="container mx-auto px-6">
@@ -371,8 +360,8 @@ export default function Home() {
                 {[
                   { step: "01", title: "Assets & Chains", desc: "WON is backed by stablecoins on XPR with on-chain reserves visible to stewards.", reveal: true },
                   { step: "02", title: "Treasury Routing", desc: "Governance steers how fees and reserves support new tokenizations, liquidity, and community grants.", reveal: true },
-                  { step: "03", title: "Pricing Mechanics", desc: "Designed to track a $1 reference with buffers and controls; market prices can move above or below based on liquidity.", reveal: true },
-                  { step: "04", title: "The Vision", desc: "A shared unit of account that helps ecovillages coordinate funding, tokenization, and long-term stewardship.", reveal: true }
+                  { step: "03", title: "Pricing Mechanics", desc: "Designed to reference a $1 baseline with buffers and governance controls; market prices can drift above that baseline as demand and liquidity evolve.", reveal: true },
+                  { step: "04", title: "The Vision", desc: "Shared units of account that empower ecovillages to coordinate funding, tokenization, and long-term stewardship.", reveal: true }
                 ].map((item, i) => (
                   <div
                     key={i}
@@ -414,10 +403,12 @@ export default function Home() {
 
                 <div className="space-y-6">
                   {[
-                    { title: "Carbon Credit Vault (ERC-4626)", desc: "Users deposit credits; yield is reinvested to accumulate more." },
-                    { title: "Fair-trade Redeemable Land-Base-Backed Value Systems Batch (ERC-6960)", desc: "Ownership stays in core layer, certifications in extension layer." },
-                    { title: "Automated Donations (ERC-995)", desc: "Social token routes fee on each transfer to verified beneficiaries." },
-                    { title: "Abundant Liquidity Pools", desc: "Abundant liquidity pools powered by an abundant stream of funding from WON holders." }
+                    { title: "Redeemable Goods Tokens (e.g., ECO-VEG)", desc: "Redeemable only for specific goods or services, like weekly vegetable boxes or farm products." },
+                    { title: "Renewable Energy Credits", desc: "Each token represents 1 kWh of verified solar or wind energy." },
+                    { title: "Food Share Tokens", desc: "Seasonal food shares redeemable for weekly harvest pickups." },
+                    { title: "Compost Credits", desc: "Each token represents 1 kg of compost returned to the soil." },
+                    { title: "Community Labor Hours", desc: "One token equals one hour of agreed community labor." },
+                    { title: "Ecovillage Service Credits", desc: "Game-like or practical tokens for events, festivals, learning experiences, or low-cost services like room nights and tool lending." }
                   ].map((item, i) => (
                     <div key={i} className="flex gap-4 items-start">
                       <CheckCircle className="w-6 h-6 text-primary shrink-0 mt-1" />

@@ -91,9 +91,8 @@ export default function StakePage() {
               <p className="bridge-eyebrow">Stake to Prioritize</p>
               <h1 className="bridge-title">Route WON toward the regions you want funded first.</h1>
               <p className="bridge-subhead">
-                Stake WON to elevate regional priorities. Each monthly cycle, the highest-staked
-                region unlocks a single project to prioritize on-chain, then the slate resets for the
-                next month.
+                Stake WON to elevate regional priorities. Staking is non-custodial, so your WON
+                stays yours, and rewards may be distributed to stewards who signal early.
               </p>
             </div>
           </div>
@@ -123,7 +122,7 @@ export default function StakePage() {
                 </button>
               </div>
               <p className="bridge-muted">
-                Connect with WharfKit, then stake WON to signal which region gets the single monthly project allocation.
+                Connect your wallet to stake WON. You keep custody of your WON and can unstake at any time.
               </p>
             </div>
             <div className="bridge-field">
@@ -140,12 +139,17 @@ export default function StakePage() {
           </div>
 
           <div className="bridge-input-row" style={{ marginTop: 10 }}>
-            <button type="button" className="bridge-primary">
-              Signal priority stake (XPR)
-            </button>
+            <a
+              className="bridge-primary"
+              href="https://github.com/XPRNetwork/proton.contracts?utm_source=perplexity"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Connect & stake WON
+            </a>
             <div className="bridge-banner" style={{ marginTop: 0 }}>
-              Wallet connection and on-chain staking will open with the next deployment of the WON
-              staking contract on XPR. Stakes flow via WharfKit.
+              Powered by Proton contracts on XPR. Staking does not remove WON from your ownership,
+              and rewards may be earned depending on distribution schedules.
             </div>
           </div>
 

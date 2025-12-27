@@ -107,9 +107,6 @@ export default function Marketplace() {
                     >
                       Trade on Alcor
                     </a>
-                    <div className="bridge-banner" style={{ marginTop: 0 }}>
-                      Direct link only—liquidity, route depth, and fees remain on the exchange.
-                    </div>
                   </div>
                 </div>
               ))}
