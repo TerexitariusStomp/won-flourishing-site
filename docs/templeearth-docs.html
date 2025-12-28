@@ -1,0 +1,1431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temple Earth: A Living Blueprint for Regenerative Culture</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@300;400;600;700&family=Inter:wght@300;400;500;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #2D5016;
+            --secondary: #8B4513;
+            --accent: #D4A574;
+            --earth: #3E2723;
+            --light: #F5F1E8;
+            --white: #FFFFFF;
+            --text: #2C2C2C;
+            --text-light: #5A5A5A;
+        }
+        
+        body {
+            font-family: 'Crimson Pro', serif;
+            line-height: 1.8;
+            color: var(--text);
+            background: var(--light);
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        /* Cover Page */
+        .cover {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--earth) 100%);
+            color: var(--white);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cover::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="1" fill="rgba(255,255,255,0.1)"/></svg>');
+            animation: float 60s linear infinite;
+        }
+        
+        @keyframes float {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+        
+        .cover-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .cover h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+        }
+        
+        .cover .subtitle {
+            font-size: 1.8rem;
+            font-weight: 300;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+        }
+        
+        .cover .tagline {
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            opacity: 0.7;
+        }
+        
+        /* Navigation */
+        .nav {
+            position: sticky;
+            top: 0;
+            background: var(--white);
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 100;
+            margin-bottom: 3rem;
+        }
+        
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+        }
+        
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        /* Chapter Sections */
+        .chapter {
+            padding: 4rem 0;
+            min-height: 100vh;
+        }
+        
+        .chapter-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .chapter-number {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+        
+        .chapter-title {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        .chapter-intro {
+            font-size: 1.3rem;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+        
+        /* Typography */
+        h2 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin: 3rem 0 1.5rem 0;
+            line-height: 1.3;
+        }
+        
+        h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--earth);
+            margin: 2.5rem 0 1rem 0;
+        }
+        
+        h4 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--secondary);
+            margin: 2rem 0 1rem 0;
+        }
+        
+        p {
+            font-size: 1.15rem;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+        }
+        
+        /* Callout Boxes */
+        .callout {
+            background: var(--white);
+            border-left: 4px solid var(--primary);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        
+        .callout.vision {
+            border-left-color: var(--primary);
+            background: linear-gradient(135deg, rgba(45,80,22,0.05) 0%, rgba(45,80,22,0.02) 100%);
+        }
+        
+        .callout.mission {
+            border-left-color: var(--secondary);
+            background: linear-gradient(135deg, rgba(139,69,19,0.05) 0%, rgba(139,69,19,0.02) 100%);
+        }
+        
+        .callout.purpose {
+            border-left-color: var(--accent);
+            background: linear-gradient(135deg, rgba(212,165,116,0.1) 0%, rgba(212,165,116,0.03) 100%);
+        }
+        
+        .callout h4 {
+            margin-top: 0;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        
+        /* Lists */
+        ul {
+            margin: 1.5rem 0 1.5rem 2rem;
+        }
+        
+        li {
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+        }
+        
+        /* Diagrams */
+        .diagram-container {
+            margin: 3rem 0;
+            padding: 2rem;
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        
+        .diagram-title {
+            text-align: center;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 2rem;
+        }
+        
+        svg {
+            display: block;
+            margin: 0 auto;
+        }
+        
+        /* Three Levels Diagram */
+        .level-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border-top: 4px solid var(--primary);
+        }
+        
+        .level-card.seeds {
+            border-top-color: #8BC34A;
+        }
+        
+        .level-card.stems {
+            border-top-color: #4CAF50;
+        }
+        
+        .level-card.trees {
+            border-top-color: #2E7D32;
+        }
+        
+        .level-card h4 {
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .level-icon {
+            font-size: 2rem;
+        }
+        
+        /* Grid Layouts */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+        }
+        
+        .card h4 {
+            margin-top: 0;
+            color: var(--primary);
+        }
+        
+        /* Quote Blocks */
+        .quote {
+            font-size: 1.5rem;
+            font-style: italic;
+            text-align: center;
+            margin: 3rem auto;
+            max-width: 800px;
+            color: var(--earth);
+            font-weight: 300;
+            line-height: 1.6;
+        }
+        
+        .quote-author {
+            font-size: 1.1rem;
+            font-style: normal;
+            color: var(--text-light);
+            margin-top: 1rem;
+            font-weight: 400;
+        }
+        
+        /* Process Flow */
+        .process-flow {
+            margin: 3rem 0;
+        }
+        
+        .process-step {
+            display: flex;
+            gap: 2rem;
+            margin: 2rem 0;
+            align-items: flex-start;
+        }
+        
+        .process-number {
+            flex-shrink: 0;
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .process-content {
+            flex: 1;
+        }
+        
+        .process-content h4 {
+            margin-top: 0;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .cover h1 {
+                font-size: 2.5rem;
+            }
+            
+            .cover .subtitle {
+                font-size: 1.3rem;
+            }
+            
+            .chapter-title {
+                font-size: 2rem;
+            }
+            
+            .grid-2, .grid-3 {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+        
+        /* Print Styles */
+        @media print {
+            .nav {
+                display: none;
+            }
+            
+            .chapter {
+                page-break-before: always;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Cover Page -->
+    <div class="cover">
+        <div class="cover-content">
+            <div class="tagline">A Living Blueprint</div>
+            <h1>Temple Earth</h1>
+            <div class="subtitle">Growing Organizations Like Forests, Not Machines</div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container nav-content">
+            <div class="nav-title">Temple Earth</div>
+            <div class="nav-links">
+                <a href="#vision">Vision</a>
+                <a href="#structure">Structure</a>
+                <a href="#participation">Participation</a>
+                <a href="#governance">Governance</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Introduction -->
+    <section class="chapter" id="intro">
+        <div class="container">
+            <div class="chapter-header">
+                <div class="chapter-number">Introduction</div>
+                <h1 class="chapter-title">A New Story Begins</h1>
+                <p class="chapter-intro">What if organizations could grow like forests instead of operating like machines?</p>
+            </div>
+            
+            <p>What if governance could mirror mycelial networks rather than corporate hierarchies? What if every decision, every system, every relationship was designed to serve life's flourishing?</p>
+            
+            <p>This is not a business plan. This is a cultural organism—a living architecture for regeneration that weaves together Indigenous wisdom, cutting-edge technology, embodied leadership, and sacred governance into something entirely new.</p>
+            
+            <p>Welcome to Temple Earth.</p>
+        </div>
+    </section>
+
+    <!-- Part I: Vision -->
+    <section class="chapter" id="vision">
+        <div class="container">
+            <div class="chapter-header">
+                <div class="chapter-number">Part I</div>
+                <h1 class="chapter-title">The Vision We Hold</h1>
+                <p class="chapter-intro">Why we exist and what we're creating together</p>
+            </div>
+
+            <div class="callout vision">
+                <h4>Vision</h4>
+                <p>A world where all life thrives in harmony—where human systems, culture, and consciousness reflect kinship with Earth, abundance for all beings, and creative aliveness. In this world, Indigenous wisdom and cutting-edge technology co-steward living landscapes.</p>
+            </div>
+
+            <div class="callout mission">
+                <h4>Mission</h4>
+                <p>To design and embody regenerative culture—through storytelling, systems innovation, kinship practices, and embodied leadership—that restores harmony between people, planet, and possibility. This mission lives through markets that pay Indigenous and local stewards to keep forests standing, through verifiable biodiversity and carbon grounded in real ecosystems, and through decentralized infrastructure that makes conservation a dignified, well-compensated livelihood.</p>
+            </div>
+
+            <div class="callout purpose">
+                <h4>Purpose</h4>
+                <p>To embody love and kinship with all life, and to create the stories, systems, and cultural architectures that make regenerative, joyful, abundant futures possible. We treat data as the voice of the forest, money as a tool for healing rather than extraction, and governance as a living relationship with Indigenous peoples, rivers, animals, and future generations.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Part II: Principles -->
+    <section class="chapter" id="principles">
+        <div class="container">
+            <div class="chapter-header">
+                <div class="chapter-number">Part II</div>
+                <h1 class="chapter-title">The Principles That Guide Us</h1>
+                <p class="chapter-intro">Co-creation patterns: How we move together</p>
+            </div>
+
+            <p>All decisions, budgets, proposals, and discussions are public and accessible. There is no back-room deal-making. The forest listens; so do we.</p>
+
+            <div class="grid-2">
+                <div class="card">
+                    <h4>🤝 Consent-Based Decision Making</h4>
+                    <p>Anyone can make a proposal. If there is no reasoned objection, the proposal passes. Objections are creative tension and collective intelligence.</p>
+                </div>
+
+                <div class="card">
+                    <h4>🌊 Flow-State Governance</h4>
+                    <p>Rapid iteration, deep learning, continuous evolution. We move with the speed of markets while staying rooted in values.</p>
+                </div>
+
+                <div class="card">
+                    <h4>💚 Embodied Presence</h4>
+                    <p>We govern from heart, gut, and collective body—not the head alone. This is how Indigenous peoples have made decisions for millennia.</p>
+                </div>
+
+                <div class="card">
+                    <h4>⚡ Earned Influence</h4>
+                    <p>Governance influence is earned through actions, not purchased. You cannot buy your way into decision-making.</p>
+                </div>
+            </div>
+
+            <div class="callout">
+                <h4>Dynamic Evolution</h4>
+                <p>Temple Earth evolves dynamically based on feedback, learning, and shifting context. We mirror evolution, not bureaucracy. We use circles—each autonomous yet interdependent, mirroring mycelial networks where nutrients and information flow freely.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Part III: Structure -->
+    <section class="chapter" id="structure">
+        <div class="container">
+            <div class="chapter-header">
+                <div class="chapter-number">Part III</div>
+                <h1 class="chapter-title">Four Interdependent Circles</h1>
+                <p class="chapter-intro">The body of Temple Earth</p>
+            </div>
+
+            <div class="diagram-container">
+                <div class="diagram-title">The Four Circles: A Mycelial Network</div>
+                <svg viewBox="0 0 800 600" width="100%" height="500">
+                    <!-- Central Connection -->
+                    <circle cx="400" cy="300" r="80" fill="none" stroke="#2D5016" stroke-width="3" stroke-dasharray="5,5"/>
+                    <text x="400" y="305" text-anchor="middle" font-size="18" font-weight="600" fill="#2D5016">Temple</text>
+                    <text x="400" y="325" text-anchor="middle" font-size="18" font-weight="600" fill="#2D5016">Earth</text>
+                    
+                    <!-- Connecting Lines -->
+                    <line x1="400" y1="220" x2="400" y2="120" stroke="#8B4513" stroke-width="2" opacity="0.3"/>
+                    <line x1="400" y1="380" x2="400" y2="480" stroke="#8B4513" stroke-width="2" opacity="0.3"/>
+                    <line x1="320" y1="300" x2="120" y2="300" stroke="#8B4513" stroke-width="2" opacity="0.3"/>
+                    <line x1="480" y1="300" x2="680" y2="300" stroke="#8B4513" stroke-width="2" opacity="0.3"/>
+                    
+                    <!-- Governance Circle (Top) -->
+                    <circle cx="400" cy="80" r="70" fill="#2D5016" opacity="0.9"/>
+                    <text x="400" y="75" text-anchor="middle" font-size="16" font-weight="600" fill="white">Governance</text>
+                    <text x="400" y="95" text-anchor="middle" font-size="14" fill="white">The Nervous System</text>
+                    
+                    <!-- Culture Circle (Bottom) -->
+                    <circle cx="400" cy="520" r="70" fill="#8B4513" opacity="0.9"/>
+                    <text x="400" y="515" text-anchor="middle" font-size="16" font-weight="600" fill="white">Culture & Ritual</text>
+                    <text x="400" y="535" text-anchor="middle" font-size="14" fill="white">The Heart</text>
+                    
+                    <!-- Story Circle (Left) -->
+                    <circle cx="80" cy="300" r="70" fill="#D4A574" opacity="0.9"/>
+                    <text x="80" y="295" text-anchor="middle" font-size="16" font-weight="600" fill="white">Story &</text>
+                    <text x="80" y="315" text-anchor="middle" font-size="16" font-weight="600" fill="white">Mythos</text>
+                    <text x="80" y="335" text-anchor="middle" font-size="13" fill="white">The Soul</text>
+                    
+                    <!-- Protocols Circle (Right) -->
+                    <circle cx="720" cy="300" r="70" fill="#3E2723" opacity="0.9"/>
+                    <text x="720" y="290" text-anchor="middle" font-size="15" font-weight="600" fill="white">Protocols of</text>
+                    <text x="720" y="308" text-anchor="middle" font-size="15" font-weight="600" fill="white">Regenerative</text>
+                    <text x="720" y="326" text-anchor="middle" font-size="15" font-weight="600" fill="white">Systems</text>
+                    <text x="720" y="345" text-anchor="middle" font-size="13" fill="white">The Mind</text>
+                </svg>
+            </div>
+
+            <h2>1. Governance Circle: The Nervous System</h2>
+            <p><strong>Purpose:</strong> Handles proposals, consent cycles, and structural decisions.</p>
+            
+            <div class="callout">
+                <p>This circle receives proposals from any member, facilitates consent cycles, and makes decisions about how we operate. It ensures that all decisions are transparent, that consent is genuine, and that the organization evolves responsibly.</p>
+            </div>
+
+            <h2>2. Culture & Ritual Circle: The Heart</h2>
+            <p><strong>Purpose:</strong> Holds ceremony, grounding practices, and embodied alignment.</p>
+            
+            <div class="callout">
+                <p><strong>Why This Matters:</strong> Ceremony is not luxury—it is infrastructure. Ritual creates coherence, trauma-informed practices create safety, and embodied presence creates alignment. Without this circle, we are just another extractive organization with better intentions.</p>
+            </div>
+
+            <h2>3. Story & Mythos Circle: The Soul</h2>
+            <p><strong>Purpose:</strong> Crafts narratives, celebrates victories, weaves meaning.</p>
+            
+            <div class="callout">
+                <p><strong>The Power of Story:</strong> Stories are more powerful than data. A grandmother's story about protecting her forest is worth a thousand carbon reports. This circle ensures that our work is not just measured—it is felt, remembered, and retold in ways that change hearts and minds.</p>
+            </div>
+
+            <h2>4. Protocols of Regenerative Systems Circle: The Mind</h2>
+            <p><strong>Purpose:</strong> Designs and refines the technical, ecological, and financial systems.</p>
+            
+            <div class="callout">
+                <p><strong>Technology as Liberation:</strong> Technology is a tool for liberation or oppression. This circle ensures that every line of code, every protocol, every financial mechanism is aligned with regenerative culture. We build systems that serve life, that are accessible to grandmothers, that honor Indigenous data sovereignty.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Part IV: Participation Levels -->
+    <section class="chapter" id="participation">
+        <div class="container">
+            <div class="chapter-header">
+                <div class="chapter-number">Part IV</div>
+                <h1 class="chapter-title">Levels of Participation</h1>
+                <p class="chapter-intro">How you grow within Temple Earth</p>
+            </div>
+
+            <div class="diagram-container">
+                <div class="diagram-title">The Three Levels: Natural Growth</div>
+                <svg viewBox="0 0 800 500" width="100%" height="450">
+                    <!-- Tree Trunk -->
+                    <rect x="350" y="200" width="100" height="280" fill="#5D4037" rx="10"/>
+                    
+                    <!-- Roots (Seeds) -->
+                    <path d="M 400 480 Q 300 520 250 540" stroke="#8BC34A" stroke-width="4" fill="none"/>
+                    <path d="M 400 480 Q 500 520 550 540" stroke="#8BC34A" stroke-width="4" fill="none"/>
+                    <path d="M 400 480 L 400 540" stroke="#8BC34A" stroke-width="4"/>
+                    <circle cx="250" cy="540" r="8" fill="#8BC34A"/>
+                    <circle cx="400" cy="540" r="8" fill="#8BC34A"/>
+                    <circle cx="550" cy="540" r="8" fill="#8BC34A"/>
+                    
+                    <!-- Middle branches (Stems) -->
+                    <line x1="350" y1="340" x2="250" y2="340" stroke="#4CAF50" stroke-width="6"/>
+                    <line x1="450" y1="340" x2="550" y2="340" stroke="#4CAF50" stroke-width="6"/>
+                    <circle cx="250" cy="340" r="12" fill="#4CAF50"/>
+                    <circle cx="550" cy="340" r="12" fill="#4CAF50"/>
+                    
+                    <!-- Top canopy (Trees) -->
+                    <ellipse cx="400" cy="150" rx="200" ry="120" fill="#2E7D32" opacity="0.8"/>
+                    <ellipse cx="300" cy="120" rx="120" ry="80" fill="#2E7D32" opacity="0.7"/>
+                    <ellipse cx="500" cy="120" rx="120" ry="80" fill="#2E7D32" opacity="0.7"/>
+                    
+                    <!-- Labels -->
+                    <text x="400" y="470" text-anchor="middle" font-size="20" font-weight="700" fill="#8BC34A">SEEDS</text>
+                    <text x="400" y="380" text-anchor="middle" font-size="20" font-weight="700" fill="#4CAF50">STEMS</text>
+                    <text x="400" y="160" text-anchor="middle" font-size="24" font-weight="700" fill="white">TREES</text>
+                    
+                    <!-- Descriptions -->
+                    <text x="50" y="540" font-size="14" fill="#5A5A5A">Witnesses & Explorers</text>
+                    <text x="50" y="340" font-size="14" fill="#5A5A5A">Contributors & Pollinators</text>
+                    <text x="50" y="140" font-size="14" fill="#5A5A5A">Weavers, Custodians & Culture Holders</text>
+                </svg>
+            </div>
+
+            <div class="level-card seeds">
+                <h4><span class="level-icon">🌱</span> Seeds – Subscribers</h4>
+                <p><strong>Who You Are:</strong> You are learning. You are curious. You are at the edges of the forest, getting to know the lay of the land.</p>
+                
+                <p><strong>What You Do:</strong></p>
+                <ul>
+                    <li>Attend calls and ceremonies</li>
+                    <li>Read proposals and decisions</li>
+                    <li>Ask questions and offer perspective</li>
+                    <li>Witness what is happening</li>
+                </ul>
+                
+                <p><strong>Your Power:</strong> Full access to all information. Your curiosity and fresh eyes matter. You can raise concerns in proposal cycles.</p>
+            </div>
+
+            <div class="level-card stems">
+                <h4><span class="level-icon">🌿</span> Stems – Members</h4>
+                <p><strong>Who You Are:</strong> You are engaged and actively co-creating. You have moved past observation into participation. You are pollinating the ecosystem with your gifts and labor.</p>
+                
+                <p><strong>What You Do:</strong></p>
+                <ul>
+                    <li>Make proposals and raise objections</li>
+                    <li>Attend ceremonies and embodied practices</li>
+                    <li>Contribute your skills and labor</li>
+                    <li>Co-create solutions and innovations</li>
+                </ul>
+                
+                <p><strong>Your Power:</strong> Decision-making influence through proposals and consent. The ability to shape the direction of the organization.</p>
+            </div>
+
+            <div class="level-card trees">
+                <h4><span class="level-icon">🌳</span> Trees – Stewards</h4>
+                <p><strong>Who You Are:</strong> You are highly trusted. You have anchored yourself to the mission. You hold institutional memory. You are the ancient, wise part of the forest—the one other beings shelter under.</p>
+                
+                <p><strong>What You Do:</strong></p>
+                <ul>
+                    <li>Anchor the mission through presence and integrity</li>
+                    <li>Hold institutional memory and wisdom</li>
+                    <li>Train and mentor others (Seeds and Stems)</li>
+                    <li>Facilitate circles and guide decision-making</li>
+                </ul>
+                
+                <p><strong>Your Power:</strong> Deep governance voice. Authority to train and initiate others. Stewardship of sacred processes.</p>
+            </div>
+
+            <div class="callout">
+                <h4>Growing Into Your Level: The Natural Rhythm</h4>
+                <p>You do not jump levels; you grow into them. This is how forests grow. A seed does not try to be a tree. It germinates, puts down roots, grows a stem, and over time—decades, centuries—becomes a mighty tree. There is no rushing this. There is no skipping steps.</p>
+                <p><strong>Remember:</strong> A Seed's curiosity is as sacred as a Tree's wisdom. Both are essential. Both are honored.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Part V: Communication -->
+    <section class="chapter" id="communication">
+        <div class="container">
+            <div class="chapter-header">
+                <div class="chapter-number">Part V</div>
+                <h1 class="chapter-title">Communication & Rhythms</h1>
+                <p class="chapter-intro">How the community co-creates</p>
+            </div>
+
+            <p>Our communication infrastructure mirrors natural ecosystems, with different spaces serving different functions.</p>
+
+            <div class="grid-2">
+                <div class="card">
+                    <h4>🌞 Village Square</h4>
+                    <p><strong>Purpose:</strong> Clarity, coherence, alignment</p>
+                    <p><strong>Platform:</strong> Reddit</p>
+                    <p>Major updates, new proposals, events, governance announcements. This is the "sunlight" of the ecosystem—visible, transparent, nourishing.</p>
+                </div>
+
+                <div class="card">
+                    <h4>🍄 Mycelial Threads</h4>
+                    <p><strong>Purpose:</strong> Organic, emergent intelligence</p>
+                    <p><strong>Platform:</strong> Twitter</p>
+                    <p>Brainstorming, ideas & explorations, questions, cross-pollination. Decentralized, intelligent, alive.</p>
+                </div>
+
+                <div class="card">
+                    <h4>🔨 Deep Workrooms</h4>
+                    <p><strong>Purpose:</strong> Focused collaboration</p>
+                    <p><strong>Platform:</strong> GitHub</p>
+                    <p>Working group documents, project briefs, research, deliverables.</p>
+                </div>
+
+                <div class="card">
+                    <h4>💚 Embodiment Space</h4>
+                    <p><strong>Purpose:</strong> Presence, regulation, connection</p>
+                    <p><strong>Platform:</strong> Google Meet</p>
+                    <p>Embodied check-ins, deep co-creation, conflict resolution, ceremonies.</p>
+                </div>
+            </div>
+
+            <h2>Rhythms of Connection</h2>
+
+            <div class="grid-3">
+                <div class="card">
+                    <h4>Weekly</h4>
+                    <ul>
+                        <li>Co-Creation Jam (90 min)</li>
+                        <li>Working Groups (60 min)</li>
+                        <li>Embodiment Ritual (30 min)</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h4>Monthly</h4>
+                    <ul>
+                        <li>Community Assembly (2 hrs)</li>
+                        <li>Storyweaving Salon</li>
+                        <li>Design Lab</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h4>Seasonal</h4>
+                    <ul>
+                        <li>Equinox Gatherings</li>
+                        <li>Solstice Rituals</li>
+                        <li>Seasonal Retrospective</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Part VI: Conflict Resolution -->
+    <section class="chapter" id="conflict">
+        <div class="container">
+            <div class="chapter-header">
+                <div class="chapter-number">Part VI</div>
+                <h1 class="chapter-title">Conflict as Medicine</h1>
+                <p class="chapter-intro">The sacred truth: Conflict is not failure</p>
+            </div>
+
+            <div class="callout">
+                <p>Conflict is not failure. Conflict is information, a doorway to deeper understanding, relational repair, and system regeneration. In a living ecosystem, conflict is how the organism learns.</p>
+            </div>
+
+            <div class="diagram-container">
+                <div class="diagram-title">The Seven Phases of Conflict Resolution</div>
+                <svg viewBox="0 0 800 900" width="100%" height="800">
+                    <!-- Spiral Path -->
+                    <path d="M 400 50 Q 500 100 500 200 Q 500 300 400 350 Q 300 400 300 500 Q 300 600 400 650 Q 500 700 500 800" 
+                          stroke="#2D5016" stroke-width="3" fill="none" stroke-dasharray="10,5" opacity="0.3"/>
+                    
+                    <!-- Phase 1 -->
+                    <circle cx="400" cy="80" r="50" fill="#8BC34A" opacity="0.9"/>
+                    <text x="400" y="75" text-anchor="middle" font-size="16" font-weight="700" fill="white">Phase 1</text>
+                    <text x="400" y="95" text-anchor="middle" font-size="13" fill="white">Self-Regulation</text>
+                    
+                    <!-- Phase 2 -->
+                    <circle cx="480" cy="180" r="50" fill="#7CB342" opacity="0.9"/>
+                    <text x="480" y="175" text-anchor="middle" font-size="16" font-weight="700" fill="white">Phase 2</text>
+                    <text x="480" y="195" text-anchor="middle" font-size="13" fill="white">Direct Dialogue</text>
+                    
+                    <!-- Phase 3 -->
+                    <circle cx="450" cy="310" r="50" fill="#689F38" opacity="0.9"/>
+                    <text x="450" y="305" text-anchor="middle" font-size="16" font-weight="700" fill="white">Phase 3</text>
+                    <text x="450" y="325" text-anchor="middle" font-size="13" fill="white">Peer Support</text>
+                    
+                    <!-- Phase 4 -->
+                    <circle cx="350" cy="420" r="50" fill="#558B2F" opacity="0.9"/>
+                    <text x="350" y="415" text-anchor="middle" font-size="16" font-weight="700" fill="white">Phase 4</text>
+                    <text x="350" y="435" text-anchor="middle" font-size="13" fill="white">Restorative Circle</text>
+                    
+                    <!-- Phase 5 -->
+                    <circle cx="280" cy="550" r="50" fill="#33691E" opacity="0.9"/>
+                    <text x="280" y="545" text-anchor="middle" font-size="16" font-weight="700" fill="white">Phase 5</text>
+                    <text x="280" y="565" text-anchor="middle" font-size="13" fill="white">Repair</text>
+                    
+                    <!-- Phase 6 -->
+                    <circle cx="320" cy="680" r="50" fill="#2E7D32" opacity="0.9"/>
+                    <text x="320" y="675" text-anchor="middle" font-size="16" font-weight="700" fill="white">Phase 6</text>
+                    <text x="320" y="695" text-anchor="middle" font-size="13" fill="white">Integration</text>
+                    
+                    <!-- Phase 7 -->
+                    <circle cx="420" cy="790" r="50" fill="#1B5E20" opacity="0.9"/>
+                    <text x="420" y="785" text-anchor="middle" font-size="16" font-weight="700" fill="white">Phase 7</text>
+                    <text x="420" y="805" text-anchor="middle" font-size="12" fill="white">Accountability</text>
+                    
+                    <!-- Labels -->
+                    <text x="550" y="80" font-size="14" fill="#5A5A5A" font-weight="500">Breathwork & Inquiry</text>
+                    <text x="580" y="180" font-size="14" fill="#5A5A5A" font-weight="500">Conscious Communication</text>
+                    <text x="560" y="310" font-size="14" fill="#5A5A5A" font-weight="500">Kinship Triad</text>
+                    <text x="120" y="420" font-size="14" fill="#5A5A5A" font-weight="500">Ceremony & Healing</text>
+                    <text x="80" y="550" font-size="14" fill="#5A5A5A" font-weight="500">Agreements & Amends</text>
+                    <text x="80" y="680" font-size="14" fill="#5A5A5A" font-weight="500">30-45 Day Follow-up</text>
+                    <text x="530" y="790" font-size="14" fill="#5A5A5A" font-weight="500">Last Resort Only</text>
+                </svg>
+            </div>
+
+            <div class="process-flow">
+                <div class="process-step">
+                    <div class="process-number">1</div>
+                    <div class="process-content">
+                        <h4>Self-Regulation & Self-Inquiry</h4>
+                        <p>Before any engagement, members come back to their body, regulate their nervous system, and reflect inward. This is where true healing begins—not in blame, but in awareness.</p>
+                    </div>
+                </div>
+
+                <div class="process-step">
+                    <div class="process-number">2</div>
+                    <div class="process-content">
+                        <h4>Direct, Compassionate Communication</h4>
+                        <p>If both parties feel safe, they attempt direct dialogue first. Speak from "I" perspective, share impact not accusations, stay curious, aim for understanding not victory.</p>
+                    </div>
+                </div>
+
+                <div class="process-step">
+                    <div class="process-number">3</div>
+                    <div class="process-content">
+                        <h4>Request Peer Support ("Kinship Triad")</h4>
+                        <p>If needed, request a neutral peer witness who holds compassionate space, ensures both speak uninterrupted, and helps surface needs and agreements.</p>
+                    </div>
+                </div>
+
+                <div class="process-step">
+                    <div class="process-number">4</div>
+                    <div class="process-content">
+                        <h4>Formal Restorative Circle</h4>
+                        <p>If conflict persists, a circle is convened with opening ritual, impact sharing, root-cause identification, and co-created restoration plans.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="callout">
+                <h4>Critical Principle</h4>
+                <p>This pathway is always stewarded by the Culture & Ritual Circle, always through consent-based decision-making, never through punishment. Even in separation, we hold the possibility of return and redemption.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Part VII: Governance -->
+    <section class="chapter" id="governance">
+        <div class="container">
+            <div class="chapter-header">
+                <div class="chapter-number">Part VII</div>
+                <h1 class="chapter-title">Governance as Living System</h1>
+                <p class="chapter-intro">We govern like forests, not machines</p>
+            </div>
+
+            <p>Our governance blends holocracy, sociocracy, Indigenous council practices, and living-systems design into a regenerative, decentralized, embodied model.</p>
+
+            <div class="diagram-container">
+                <div class="diagram-title">Three Governance Bodies: Head, Heart, and Hands</div>
+                <svg viewBox="0 0 800 400" width="100%" height="400">
+                    <!-- Triangle shape -->
+                    <polygon points="400,50 150,350 650,350" fill="none" stroke="#2D5016" stroke-width="3"/>
+                    
+                    <!-- Heart Chamber (Top) -->
+                    <circle cx="400" cy="100" r="70" fill="#E91E63" opacity="0.85"/>
+                    <text x="400" y="95" text-anchor="middle" font-size="18" font-weight="700" fill="white">HEART</text>
+                    <text x="400" y="115" text-anchor="middle" font-size="13" fill="white">Chamber</text>
+                    <text x="400" y="190" text-anchor="middle" font-size="14" fill="#5A5A5A" font-weight="500">Mission & Values</text>
+                    
+                    <!-- Mind Chamber (Bottom Right) -->
+                    <circle cx="600" cy="320" r="70" fill="#2196F3" opacity="0.85"/>
+                    <text x="600" y="315" text-anchor="middle" font-size="18" font-weight="700" fill="white">MIND</text>
+                    <text x="600" y="335" text-anchor="middle" font-size="13" fill="white">Chamber</text>
+                    <text x="680" y="380" text-anchor="middle" font-size="14" fill="#5A5A5A" font-weight="500">Execution & Expertise</text>
+                    
+                    <!-- Body Chamber (Bottom Left) -->
+                    <circle cx="200" cy="320" r="70" fill="#4CAF50" opacity="0.85"/>
+                    <text x="200" y="315" text-anchor="middle" font-size="18" font-weight="700" fill="white">BODY</text>
+                    <text x="200" y="335" text-anchor="middle" font-size="13" fill="white">Chamber</text>
+                    <text x="120" y="380" text-anchor="middle" font-size="14" fill="#5A5A5A" font-weight="500">Collective Intelligence</text>
+                    
+                    <!-- Connection lines with arrows -->
+                    <defs>
+                        <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                            <polygon points="0 0, 10 3, 0 6" fill="#8B4513"/>
+                        </marker>
+                    </defs>
+                    <line x1="350" y1="150" x2="250" y2="270" stroke="#8B4513" stroke-width="2" marker-end="url(#arrowhead)"/>
+                    <line x1="450" y1="150" x2="550" y2="270" stroke="#8B4513" stroke-width="2" marker-end="url(#arrowhead)"/>
+                    <line x1="270" y1="320" x2="530" y2="320" stroke="#8B4513" stroke-width="2" marker-end="url(#arrowhead)"/>
+                </svg>
+            </div>
+
+            <div class="grid-3">
+                <div class="card">
+                    <h4>💗 Heart Chamber</h4>
+                    <p><strong>Role:</strong> Mission, values, and coherence</p>
+                    <ul>
+                        <li>Value alignment</li>
+                        <li>Conflict navigation</li>
+                        <li>Ritual & embodiment</li>
+                        <li>Protecting against mission drift</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h4>🧠 Mind Chamber</h4>
+                    <p><strong>Role:</strong> Execution and expertise</p>
+                    <ul>
+                        <li>Domain-specific proposals</li>
+                        <li>Project leadership</li>
+                        <li>Innovation & research</li>
+                        <li>Speed & implementation</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h4>🌿 Body Chamber</h4>
+                    <p><strong>Role:</strong> Collective intelligence</p>
+                    <ul>
+                        <li>Proposal approvals</li>
+                        <li>Community sensing</li>
+                        <li>Cross-circle coordination</li>
+                        <li>Democratic accountability</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h2>The Six-Phase Governance Flow</h2>
+
+            <div class="diagram-container">
+                <div class="diagram-title">From Recognition to Learning: A Continuous Cycle</div>
+                <svg viewBox="0 0 800 500" width="100%" height="450">
+                    <!-- Circular flow -->
+                    <circle cx="400" cy="250" r="180" fill="none" stroke="#2D5016" stroke-width="3" stroke-dasharray="15,5"/>
+                    
+                    <!-- Phase circles -->
+                    <circle cx="400" cy="70" r="45" fill="#8BC34A" opacity="0.9"/>
+                    <text x="400" y="75" text-anchor="middle" font-size="14" font-weight="700" fill="white">Recognition</text>
+                    
+                    <circle cx="590" cy="140" r="45" fill="#7CB342" opacity="0.9"/>
+                    <text x="590" y="145" text-anchor="middle" font-size="14" font-weight="700" fill="white">Refinement</text>
+                    
+                    <circle cx="630" cy="320" r="45" fill="#689F38" opacity="0.9"/>
+                    <text x="630" y="325" text-anchor="middle" font-size="14" font-weight="700" fill="white">Proposal</text>
+                    
+                    <circle cx="480" cy="430" r="45" fill="#558B2F" opacity="0.9"/>
+                    <text x="480" y="435" text-anchor="middle" font-size="14" font-weight="700" fill="white">Review</text>
+                    
+                    <circle cx="250" cy="420" r="45" fill="#33691E" opacity="0.9"/>
+                    <text x="250" y="418" text-anchor="middle" font-size="13" font-weight="700" fill="white">Implement</text>
+                    
+                    <circle cx="170" cy="250" r="45" fill="#2E7D32" opacity="0.9"/>
+                    <text x="170" y="255" text-anchor="middle" font-size="14" font-weight="700" fill="white">Learning</text>
+                    
+                    <!-- Arrows -->
+                    <defs>
+                        <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                            <polygon points="0 0, 10 3, 0 6" fill="#2D5016"/>
+                        </marker>
+                    </defs>
+                    <path d="M 440 90 Q 500 100 550 125" stroke="#2D5016" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+                    <path d="M 615 180 L 615 275" stroke="#2D5016" stroke-width="2" marker-end="url(#arrow)"/>
+                    <path d="M 600 355 Q 550 400 520 415" stroke="#2D5016" stroke-width="2" marker-end="url(#arrow)"/>
+                    <path d="M 440 430 L 295 430" stroke="#2D5016" stroke-width="2" marker-end="url(#arrow)"/>
+                    <path d="M 220 385 Q 190 330 185 295" stroke="#2D5016" stroke-width="2" marker-end="url(#arrow)"/>
+                    <path d="M 200 220 Q 280 120 360 85" stroke="#2D5016" stroke-width="2" marker-end="url(#arrow)"/>
+                    
+                    <!-- Center text -->
+                    <text x="400" y="245" text-anchor="middle" font-size="16" font-weight="600" fill="#2D5016">Continuous</text>
+                    <text x="400" y="265" text-anchor="middle" font-size="16" font-weight="600" fill="#2D5016">Evolution</text>
+                </svg>
+            </div>
+
+            <div class="callout">
+                <h4>A Good Proposal is a Love Letter to the Community</h4>
+                <p>It is honest, clear, and humble. It says: "Here is what we see. Here is what we propose. We are open to your wisdom."</p>
+            </div>
+
+            <div class="quote">
+                "We govern like forests govern—through distributed intelligence, deep interconnection, feedback loops, and constant adaptation. No single tree decides the direction of the forest. The forest itself knows where to grow."
+            </div>
+        </div>
+    </section>
+
+    <!-- Part VIII: Network -->
+    <section class="chapter" id="network">
+        <div class="container">
+            <div class="chapter-header">
+                <div class="chapter-number">Part VIII</div>
+                <h1 class="chapter-title">The Network We Weave</h1>
+                <p class="chapter-intro">Temple Earth as mycelial network</p>
+            </div>
+
+            <p>Temple Earth is a mycelial network connecting global regenerative networks, decentralized technology stacks, impact ventures, and local land-based projects.</p>
+
+            <div class="diagram-container">
+                <div class="diagram-title">Our Interconnected Ecosystem</div>
+                <svg viewBox="0 0 800 600" width="100%" height="500">
+                    <!-- Central Hub -->
+                    <circle cx="400" cy="300" r="90" fill="#2D5016" opacity="0.9"/>
+                    <text x="400" y="295" text-anchor="middle" font-size="20" font-weight="700" fill="white">Temple</text>
+                    <text x="400" y="320" text-anchor="middle" font-size="20" font-weight="700" fill="white">Earth</text>
+                    
+                    <!-- Network Partners (Top) -->
+                    <circle cx="250" cy="100" r="60" fill="#8B4513" opacity="0.8"/>
+                    <text x="250" y="100" text-anchor="middle" font-size="14" fill="white" font-weight="600">Network</text>
+                    <text x="250" y="118" text-anchor="middle" font-size="14" fill="white" font-weight="600">Partners</text>
+                    <line x1="400" y1="210" x2="280" y2="150" stroke="#D4A574" stroke-width="3"/>
+                    
+                    <circle cx="550" cy="100" r="60" fill="#8B4513" opacity="0.8"/>
+                    <text x="550" y="100" text-anchor="middle" font-size="14" fill="white" font-weight="600">Technology</text>
+                    <text x="550" y="118" text-anchor="middle" font-size="14" fill="white" font-weight="600">Partners</text>
+                    <line x1="400" y1="210" x2="520" y2="150" stroke="#D4A574" stroke-width="3"/>
+                    
+                    <!-- Communities (Sides) -->
+                    <circle cx="100" cy="300" r="60" fill="#4CAF50" opacity="0.8"/>
+                    <text x="100" y="295" text-anchor="middle" font-size="14" fill="white" font-weight="600">Local</text>
+                    <text x="100" y="313" text-anchor="middle" font-size="14" fill="white" font-weight="600">Communities</text>
+                    <line x1="310" y1="300" x2="160" y2="300" stroke="#D4A574" stroke-width="3"/>
+                    
+                    <circle cx="700" cy="300" r="60" fill="#4CAF50" opacity="0.8"/>
+                    <text x="700" y="295" text-anchor="middle" font-size="14" fill="white" font-weight="600">Bioregional</text>
+                    <text x="700" y="313" text-anchor="middle" font-size="14" fill="white" font-weight="600">Projects</text>
+                    <line x1="490" y1="300" x2="640" y2="300" stroke="#D4A574" stroke-width="3"/>
+                    
+                    <!-- Land Projects (Bottom) -->
+                    <circle cx="250" cy="500" r="60" fill="#2E7D32" opacity="0.8"/>
+                    <text x="250" y="495" text-anchor="middle" font-size="14" fill="white" font-weight="600">Indigenous</text>
+                    <text x="250" y="513" text-anchor="middle" font-size="14" fill="white" font-weight="600">Stewards</text>
+                    <line x1="400" y1="390" x2="280" y2="450" stroke="#D4A574" stroke-width="3"/>
+                    
+                    <circle cx="550" cy="500" r="60" fill="#2E7D32" opacity="0.8"/>
+                    <text x="550" y="495" text-anchor="middle" font-size="14" fill="white" font-weight="600">Ecological</text>
+                    <text x="550" y="513" text-anchor="middle" font-size="14" fill="white" font-weight="600">Hubs</text>
+                    <line x1="400" y1="390" x2="520" y2="450" stroke="#D4A574" stroke-width="3"/>
+                    
+                    <!-- Mycelial connections -->
+                    <line x1="250" y1="160" x2="100" y2="240" stroke="#D4A574" stroke-width="1.5" opacity="0.4" stroke-dasharray="5,5"/>
+                    <line x1="550" y1="160" x2="700" y2="240" stroke="#D4A574" stroke-width="1.5" opacity="0.4" stroke-dasharray="5,5"/>
+                    <line x1="160" y1="300" x2="280" y2="450" stroke="#D4A574" stroke-width="1.5" opacity="0.4" stroke-dasharray="5,5"/>
+                    <line x1="640" y1="300" x2="520" y2="450" stroke="#D4A574" stroke-width="1.5" opacity="0.4" stroke-dasharray="5,5"/>
+                </svg>
+            </div>
+
+            <h2>Who We Serve</h2>
+
+            <div class="grid-3">
+                <div class="card">
+                    <h4>🧑 Individuals</h4>
+                    <p>People on personal or leadership transformation journeys: regenerative thinkers, community builders, social impact entrepreneurs.</p>
+                    <p><strong>We help them:</strong> Find alignment, deepen their relationship with Earth, lead from compassion.</p>
+                </div>
+
+                <div class="card">
+                    <h4>👥 Communities</h4>
+                    <p>Groups who need regenerative protocols, onboarding frameworks, and participation pathways.</p>
+                    <p><strong>We help them:</strong> Better represent their regenerative value.</p>
+                </div>
+
+                <div class="card">
+                    <h4>🏛️ Institutions</h4>
+                    <p>Organizations seeking to evolve: regenerative networks, climate organizations, impact investors.</p>
+                    <p><strong>We help them:</strong> Design regenerative systems, build collaboration, decentralize wisely.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Part IX: Forms of Capital -->
+    <section class="chapter" id="capital">
+        <div class="container">
+            <div class="chapter-header">
+                <div class="chapter-number">Part IX</div>
+                <h1 class="chapter-title">Forms of Capital</h1>
+                <p class="chapter-intro">The eight forms of wealth we steward</p>
+            </div>
+
+            <p>Temple Earth recognizes and stewards multiple forms of capital, each essential to our regenerative mission.</p>
+
+            <div class="diagram-container">
+                <div class="diagram-title">The Eight Forms of Wealth</div>
+                <svg viewBox="0 0 800 700" width="100%" height="650">
+                    <!-- Octagon -->
+                    <polygon points="400,50 550,150 600,300 550,450 400,550 250,450 200,300 250,150" 
+                             fill="none" stroke="#2D5016" stroke-width="3"/>
+                    
+                    <!-- Center -->
+                    <circle cx="400" cy="300" r="80" fill="#2D5016" opacity="0.9"/>
+                    <text x="400" y="295" text-anchor="middle" font-size="16" font-weight="700" fill="white">Temple</text>
+                    <text x="400" y="315" text-anchor="middle" font-size="16" font-weight="700" fill="white">Earth</text>
+                    
+                    <!-- Capital nodes -->
+                    <circle cx="400" cy="50" r="50" fill="#8BC34A" opacity="0.85"/>
+                    <text x="400" y="48" text-anchor="middle" font-size="13" font-weight="600" fill="white">Time/Labor</text>
+                    <text x="400" y="65" text-anchor="middle" font-size="11" fill="white">Capital</text>
+                    
+                    <circle cx="550" cy="150" r="50" fill="#7CB342" opacity="0.85"/>
+                    <text x="550" y="148" text-anchor="middle" font-size="13" font-weight="600" fill="white">Financial</text>
+                    <text x="550" y="165" text-anchor="middle" font-size="11" fill="white">Capital</text>
+                    
+                    <circle cx="600" cy="300" r="50" fill="#689F38" opacity="0.85"/>
+                    <text x="600" y="298" text-anchor="middle" font-size="13" font-weight="600" fill="white">Natural</text>
+                    <text x="600" y="315" text-anchor="middle" font-size="11" fill="white">Capital</text>
+                    
+                    <circle cx="550" cy="450" r="50" fill="#558B2F" opacity="0.85"/>
+                    <text x="550" y="445" text-anchor="middle" font-size="13" font-weight="600" fill="white">Intellectual</text>
+                    <text x="550" y="462" text-anchor="middle" font-size="11" fill="white">Property</text>
+                    
+                    <circle cx="400" cy="550" r="50" fill="#33691E" opacity="0.85"/>
+                    <text x="400" y="548" text-anchor="middle" font-size="13" font-weight="600" fill="white">Social</text>
+                    <text x="400" y="565" text-anchor="middle" font-size="11" fill="white">Capital</text>
+                    
+                    <circle cx="250" cy="450" r="50" fill="#2E7D32" opacity="0.85"/>
+                    <text x="250" y="448" text-anchor="middle" font-size="13" font-weight="600" fill="white">Cultural</text>
+                    <text x="250" y="465" text-anchor="middle" font-size="11" fill="white">Capital</text>
+                    
+                    <circle cx="200" cy="300" r="50" fill="#1B5E20" opacity="0.85"/>
+                    <text x="200" y="298" text-anchor="middle" font-size="13" font-weight="600" fill="white">Spiritual</text>
+                    <text x="200" y="315" text-anchor="middle" font-size="11" fill="white">Capital</text>
+                    
+                    <circle cx="250" cy="150" r="50" fill="#4CAF50" opacity="0.85"/>
+                    <text x="250" y="145" text-anchor="middle" font-size="13" font-weight="600" fill="white">Digital</text>
+                    <text x="250" y="162" text-anchor="middle" font-size="11" fill="white">Infrastructure</text>
+                    
+                    <!-- Connection lines -->
+                    <line x1="400" y1="220" x2="400" y2="100" stroke="#D4A574" stroke-width="2" opacity="0.5"/>
+                    <line x1="480" y1="250" x2="500" y2="200" stroke="#D4A574" stroke-width="2" opacity="0.5"/>
+                    <line x1="520" y1="300" x2="550" y2="300" stroke="#D4A574" stroke-width="2" opacity="0.5"/>
+                    <line x1="480" y1="350" x2="500" y2="400" stroke="#D4A574" stroke-width="2" opacity="0.5"/>
+                    <line x1="400" y1="380" x2="400" y2="500" stroke="#D4A574" stroke-width="2" opacity="0.5"/>
+                    <line x1="320" y1="350" x2="300" y2="400" stroke="#D4A574" stroke-width="2" opacity="0.5"/>
+                    <line x1="280" y1="300" x2="250" y2="300" stroke="#D4A574" stroke-width="2" opacity="0.5"/>
+                    <line x1="320" y1="250" x2="300" y2="200" stroke="#D4A574" stroke-width="2" opacity="0.5"/>
+                </svg>
+            </div>
+
+            <div class="grid-2">
+                <div class="card">
+                    <h4>💼 Time/Labor Capital</h4>
+                    <p>Executive leadership, strategic bridging between Indigenous communities and global markets, systems architecture. Collective network of 400+ Indigenous monitors/leaders.</p>
+                </div>
+
+                <div class="card">
+                    <h4>💰 Financial Capital</h4>
+                    <p>Fees for protocols creating tokenized impact assets, liquidity pools, Savimbo's certified biodiversity credits.</p>
+                </div>
+
+                <div class="card">
+                    <h4>🌿 Natural Capital</h4>
+                    <p>Verified "Totem" indicator species (jaguars, bears, monkeys), carbon sequestration, water regulation, habitat preservation.</p>
+                </div>
+
+                <div class="card">
+                    <h4>📚 Intellectual Property</h4>
+                    <p>First third-party certified biodiversity credit methodology (ISBM), indigenous-led monitoring protocols, custom workflows and ML models.</p>
+                </div>
+
+                <div class="card">
+                    <h4>🤝 Social Capital</h4>
+                    <p>Deep relationships with Indigenous communities worldwide, connections to cultural institutions, networks within Web3, ReFi, and AI/ML research.</p>
+                </div>
+
+                <div class="card">
+                    <h4>🎭 Cultural Capital</h4>
+                    <p>Indigenous wisdom of forest management and plant medicine, classical music and opera aesthetics, regenerative culture ethos.</p>
+                </div>
+
+                <div class="card">
+                    <h4>✨ Spiritual Capital</h4>
+                    <p>Ceremonial guidance from Taitas and elders, artistic transcendence, shared commitment to regenerating the planet.</p>
+                </div>
+
+                <div class="card">
+                    <h4>💻 Digital Infrastructure</h4>
+                    <p>Blockchain rails for on-chain registries, crypto wallets for direct payments, open source codebase.</p>
+                </div>
+            </div>
+
+            <div class="callout">
+                <p>Each form of wealth nourishes the others, creating upward spirals of abundance. Resources flow to where they can create the most life, not where they can extract the most value.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Conclusion -->
+    <section class="chapter" id="conclusion">
+        <div class="container">
+            <div class="chapter-header">
+                <div class="chapter-number">Conclusion</div>
+                <h1 class="chapter-title">Why This Is a Living Blueprint for Regenerative Culture</h1>
+                <p class="chapter-intro">The blueprint that breathes</p>
+            </div>
+
+            <h2>Living Because It Mirrors Life Itself</h2>
+            
+            <p>Traditional organizational blueprints are static. They establish rigid hierarchies, fixed roles, and unchanging procedures. They are designed once and expected to function indefinitely, like machines built to specification.</p>
+            
+            <p>Temple Earth operates on a fundamentally different principle: <strong>it is designed to evolve</strong>.</p>
+
+            <div class="diagram-container">
+                <div class="diagram-title">Principles of Living Systems Applied</div>
+                <svg viewBox="0 0 800 400" width="100%" height="380">
+                    <!-- Living System Cycle -->
+                    <circle cx="400" cy="200" r="150" fill="none" stroke="#2D5016" stroke-width="4" opacity="0.3"/>
+                    
+                    <!-- Core principles in a circle -->
+                    <g>
+                        <!-- Feedback Loops -->
+                        <circle cx="400" cy="50" r="45" fill="#8BC34A" opacity="0.9"/>
+                        <text x="400" y="48" text-anchor="middle" font-size="12" font-weight="700" fill="white">Feedback</text>
+                        <text x="400" y="65" text-anchor="middle" font-size="12" font-weight="700" fill="white">Loops</text>
+                        
+                        <!-- Distributed Intelligence -->
+                        <circle cx="550" cy="125" r="45" fill="#7CB342" opacity="0.9"/>
+                        <text x="550" y="120" text-anchor="middle" font-size="11" font-weight="700" fill="white">Distributed</text>
+                        <text x="550" y="138" text-anchor="middle" font-size="11" font-weight="700" fill="white">Intelligence</text>
+                        
+                        <!-- Interconnection -->
+                        <circle cx="600" cy="275" r="45" fill="#689F38" opacity="0.9"/>
+                        <text x="600" y="273" text-anchor="middle" font-size="12" font-weight="700" fill="white">Inter-</text>
+                        <text x="600" y="290" text-anchor="middle" font-size="12" font-weight="700" fill="white">connection</text>
+                        
+                        <!-- Natural Growth -->
+                        <circle cx="450" cy="350" r="45" fill="#558B2F" opacity="0.9"/>
+                        <text x="450" y="348" text-anchor="middle" font-size="12" font-weight="700" fill="white">Natural</text>
+                        <text x="450" y="365" text-anchor="middle" font-size="12" font-weight="700" fill="white">Growth</text>
+                        
+                        <!-- Self-Regulation -->
+                        <circle cx="250" cy="275" r="45" fill="#33691E" opacity="0.9"/>
+                        <text x="250" y="273" text-anchor="middle" font-size="12" font-weight="700" fill="white">Self-</text>
+                        <text x="250" y="290" text-anchor="middle" font-size="12" font-weight="700" fill="white">Regulation</text>
+                        
+                        <!-- Adaptation -->
+                        <circle cx="200" cy="125" r="45" fill="#2E7D32" opacity="0.9"/>
+                        <text x="200" y="123" text-anchor="middle" font-size="12" font-weight="700" fill="white">Continuous</text>
+                        <text x="200" y="140" text-anchor="middle" font-size="12" font-weight="700" fill="white">Adaptation</text>
+                    </g>
+                    
+                    <!-- Arrows showing flow -->
+                    <defs>
+                        <marker id="flow-arrow" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+                            <polygon points="0 0, 8 3, 0 6" fill="#2D5016"/>
+                        </marker>
+                    </defs>
+                    <path d="M 440 70 Q 480 90 510 110" stroke="#2D5016" stroke-width="2" fill="none" marker-end="url(#flow-arrow)" opacity="0.5"/>
+                    <path d="M 575 165 Q 590 210 595 230" stroke="#2D5016" stroke-width="2" fill="none" marker-end="url(#flow-arrow)" opacity="0.5"/>
+                    <path d="M 570 300 Q 520 330 495 340" stroke="#2D5016" stroke-width="2" fill="none" marker-end="url(#flow-arrow)" opacity="0.5"/>
+                    <path d="M 410 360 Q 340 345 295 310" stroke="#2D5016" stroke-width="2" fill="none" marker-end="url(#flow-arrow)" opacity="0.5"/>
+                    <path d="M 230 240 Q 215 190 215 150" stroke="#2D5016" stroke-width="2" fill="none" marker-end="url(#flow-arrow)" opacity="0.5"/>
+                    <path d="M 235 105 Q 300 65 355 55" stroke="#2D5016" stroke-width="2" fill="none" marker-end="url(#flow-arrow)" opacity="0.5"/>
+                </svg>
+            </div>
+
+            <div class="callout">
+                <p>Like a forest ecosystem, this blueprint contains feedback loops that allow continuous learning, distributed intelligence where wisdom emerges from edges, interconnected circles that function autonomously yet remain interdependent, natural growth cycles, and self-regulating systems.</p>
+                <p><strong>This isn't metaphor—it's biomimicry applied to organizational design.</strong></p>
+            </div>
+
+            <h2>Regenerative Because It Creates More Than It Consumes</h2>
+
+            <p>Sustainability asks: "How do we do less harm?" Regeneration asks: "How do we actively heal and create conditions for all life to flourish?"</p>
+
+            <div class="grid-2">
+                <div class="card">
+                    <h4>🌱 Restores What's Been Broken</h4>
+                    <p>Repairs the false separation between humans and nature. Heals extractive economic models. Mends fragmented communities through embodied practices and ceremony.</p>
+                </div>
+
+                <div class="card">
+                    <h4>💎 Generates Multiple Forms of Wealth</h4>
+                    <p>Not just financial capital, but social, cultural, spiritual, natural, and intellectual capital. Each form nourishes the others.</p>
+                </div>
+
+                <div class="card">
+                    <h4>💪 Strengthens Over Time</h4>
+                    <p>Unlike extractive systems that deplete resources, this model becomes more resilient with each iteration. Every challenge becomes wisdom.</p>
+                </div>
+
+                <div class="card">
+                    <h4>🌳 Creates Conditions for Others to Thrive</h4>
+                    <p>Like old-growth trees that shelter ecosystems, Temple Earth creates infrastructure for other regenerative projects to flourish.</p>
+                </div>
+            </div>
+
+            <h2>A Blueprint for Culture, Not Just Structure</h2>
+
+            <p>Most organizational designs focus exclusively on structure—charts, processes, roles. This blueprint recognizes that <strong>culture is the invisible architecture</strong> that determines whether any structure will truly serve life.</p>
+
+            <div class="callout">
+                <p>That's why half of this blueprint is dedicated to ceremony and ritual as essential infrastructure, embodied presence as prerequisites for wise decision-making, story and mythos as the soul that gives meaning, rights of passage that ensure power is held responsibly, and conflict as medicine rather than failure.</p>
+                <p><strong>These aren't soft skills supplementing hard systems—they are the foundation.</strong></p>
+            </div>
+
+            <h2>Blueprint Because It Can Be Replicated and Adapted</h2>
+
+            <p>A true blueprint provides patterns that others can follow while adapting to their unique context. Yet unlike mechanical blueprints, this one explicitly encourages adaptation:</p>
+
+            <div class="quote">
+                "Take these patterns. Test them in your soil. See what grows. Feed your learnings back to the network."
+            </div>
+
+            <h2>Why the World Needs This Now</h2>
+
+            <p>We live in a time of polycrisis—climate collapse, biodiversity loss, social fragmentation, institutional decay. The dominant organizational models of the industrial age are failing catastrophically because they were designed for extraction, not regeneration.</p>
+
+            <p><strong>We cannot solve regenerative challenges with extractive tools.</strong></p>
+
+            <div class="grid-3">
+                <div class="card">
+                    <h4>⚡ Speed + Wisdom</h4>
+                    <p>Organizations can move with the speed of markets while staying rooted in ancient wisdom.</p>
+                </div>
+
+                <div class="card">
+                    <h4>🌐 Technology + Life</h4>
+                    <p>Technology can serve life and liberation rather than surveillance and extraction.</p>
+                </div>
+
+                <div class="card">
+                    <h4>⚖️ Participation + Efficiency</h4>
+                    <p>Governance can be participatory and efficient, not choosing one over the other.</p>
+                </div>
+
+                <div class="card">
+                    <h4>💚 Protection + Prosperity</h4>
+                    <p>Economic systems can pay people to protect forests rather than cut them down.</p>
+                </div>
+
+                <div class="card">
+                    <h4>🤲 Complexity + Compassion</h4>
+                    <p>Communities can hold complexity without authoritarian control or chaotic collapse.</p>
+                </div>
+
+                <div class="card">
+                    <h4>👑 Power + Service</h4>
+                    <p>Power can be earned through service rather than purchased or inherited.</p>
+                </div>
+            </div>
+
+            <h2>An Invitation to the Forest</h2>
+
+            <p>This blueprint is not finished. It cannot be finished, because living systems never reach a final state—they mature, they adapt, they respond to changing conditions.</p>
+
+            <p>What you hold is a seed library of organizational DNA—proven patterns that can be planted in new soil. Some will take root exactly as described. Others will hybridize with local wisdom and emerge as something both familiar and entirely new.</p>
+
+            <div class="callout">
+                <h4>The question is not whether this blueprint is perfect.</h4>
+                <h4>The question is: Are you willing to tend the garden?</h4>
+                
+                <p><strong>Are you willing to:</strong></p>
+                <ul>
+                    <li>Choose regeneration over extraction, even when it's harder?</li>
+                    <li>Trust emergence over control, even when it's uncertain?</li>
+                    <li>Honor all beings as kin, even when it challenges your worldview?</li>
+                    <li>Do the inner work that outer change demands?</li>
+                    <li>Move at the speed of trust, not just the speed of transaction?</li>
+                </ul>
+            </div>
+
+            <p>If so, you are already part of the mycelial network. You are already a seed in the forest of what's coming.</p>
+
+            <p>This blueprint exists because we refuse to accept that human systems must be extractive, hierarchical, and soul-crushing. We know—through millennia of Indigenous wisdom and cutting-edge systems science—that organizations can be living, loving, learning organisms that heal the world they touch.</p>
+
+            <div class="quote">
+                "Temple Earth is proof that regenerative culture is not a utopian dream. It is a practical, implementable, measurable approach to organizing human activity in service to all life."
+                <div class="quote-author">— This is the blueprint. Now let us build the forest.</div>
+            </div>
+
+            <div style="height: 100px;"></div>
+
+            <div style="text-align: center; padding: 4rem 0; background: linear-gradient(135deg, var(--primary) 0%, var(--earth) 100%); border-radius: 12px; margin: 4rem 0;">
+                <p style="color: var(--white); font-size: 1.3rem; font-style: italic; margin: 0; line-height: 1.8; padding: 0 2rem;">
+                    "We are not just building better systems. We are becoming the kind of humans who can tend systems that serve life. That is the work of regenerative culture—to transform ourselves so completely that we can no longer imagine extracting from the world we love."
+                </p>
+                <p style="color: var(--accent); margin-top: 2rem; font-size: 1.1rem; font-weight: 600;">
+                    — The Temple Earth Community
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background: var(--earth); color: var(--white); padding: 3rem 0; text-align: center;">
+        <div class="container">
+            <h3 style="color: var(--accent); margin-bottom: 1rem;">Temple Earth</h3>
+            <p style="opacity: 0.8; margin-bottom: 0;">Growing Organizations Like Forests, Not Machines</p>
+            <p style="opacity: 0.6; font-size: 0.9rem; margin-top: 2rem;">A Living Blueprint for Regenerative Culture</p>
+        </div>
+    </footer>
+
+</body>
+</html>
