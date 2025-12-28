@@ -86,6 +86,7 @@ const WON_TOKEN_CONTRACT = (import.meta.env.VITE_WON_TOKEN_CONTRACT ?? "w3won").
 const WON_TOKEN_SYMBOL = (import.meta.env.VITE_WON_TOKEN_SYMBOL ?? "WON").trim();
 const WON_TOKEN_DECIMALS = Number(import.meta.env.VITE_WON_TOKEN_DECIMALS ?? 4);
 const SESSION_STORAGE_KEY = "wharf-session";
+const WALLET_LOGIN_TIMEOUT_MS = 15000;
 
 export default function StakePage() {
   const [location] = useLocation();
@@ -102,20 +103,27 @@ export default function StakePage() {
   const [session, setSession] = useState<Session | null>(null);
   const [isConnecting, setIsConnecting] = useState(false);
 
+  const chainDefinition = useMemo(
+    () => ({
+      id: PROTON_CHAIN_ID,
+      url: PROTON_CHAIN_URL,
+      name: "Proton (XPR)"
+    }),
+    []
+  );
+
   const sessionKit = useMemo(
     () =>
       new SessionKit({
         appName: "We Won",
-        chains: [
-          {
-            id: PROTON_CHAIN_ID,
-            url: PROTON_CHAIN_URL
-          }
-        ],
+        chains: [chainDefinition],
         ui: new WebRenderer(),
-        walletPlugins: [new WalletPluginAnchor(), new WalletPluginCloudWallet()]
+        walletPlugins: [
+          new WalletPluginAnchor(),
+          new WalletPluginCloudWallet({ supportedChains: [PROTON_CHAIN_ID] })
+        ]
       }),
-    []
+    [chainDefinition]
   );
 
   useEffect(() => {
@@ -157,13 +165,34 @@ export default function StakePage() {
     }
     setIsConnecting(true);
     setStakeError(null);
+    let timeoutId: ReturnType<typeof setTimeout> | null = null;
+    const timeoutPromise = new Promise((_, reject) => {
+      timeoutId = setTimeout(
+        () => reject(new Error("Wallet connection timed out. Close any wallet popups and try again.")),
+        WALLET_LOGIN_TIMEOUT_MS
+      );
+    });
     try {
-      const loginResult = await sessionKit.login();
+      const loginResult = (await Promise.race([sessionKit.login(), timeoutPromise])) as Awaited<
+        ReturnType<SessionKit["login"]>
+      >;
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
       setSession(loginResult.session);
       localStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(loginResult.session.serialize()));
     } catch (error) {
       console.error(error);
-      setStakeError("Unable to connect to your XPR wallet. Please try again.");
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+      if (error instanceof Error && error.message.includes("does not support the chain")) {
+        setStakeError("This wallet is not configured for Proton (XPR). Please enable Proton or switch wallets.");
+      } else if (error instanceof Error) {
+        setStakeError(error.message || "Unable to connect to your XPR wallet. Please try again.");
+      } else {
+        setStakeError("Unable to connect to your XPR wallet. Please try again.");
+      }
     } finally {
       setIsConnecting(false);
     }
@@ -289,42 +318,42 @@ export default function StakePage() {
                   Connect your Proton (XPR) wallet via WharfKit to stake WON. You keep custody of
                   your WON and can unstake at any time.
                 </p>
-              </div>
-              <div className="bridge-field">
-                <label className="bridge-label">Select region</label>
-                <select
-                  className="bridge-select"
-                  value={selectedRegion}
-                  onChange={(event) => setSelectedRegion(event.target.value)}
-                >
-                  {regions.map((region) => (
-                    <option key={region.id} value={region.id}>
-                      {region.name}
-                    </option>
-                  ))}
-                </select>
-                <p className="bridge-muted">Priority updates every 24 hours as stakes move.</p>
-              </div>
             </div>
-
-            <div className="bridge-input-row" style={{ marginTop: 10 }}>
-              <button
-                className="bridge-primary"
-                type="button"
-                onClick={handleStake}
-                disabled={stakeStatus === "signing" || isConnecting}
+            <div className="bridge-field">
+              <label className="bridge-label">Select region</label>
+              <select
+                className="bridge-select"
+                value={selectedRegion}
+                onChange={(event) => setSelectedRegion(event.target.value)}
               >
-                {session ? "Stake WON" : isConnecting ? "Connecting..." : "Connect XPR wallet"}
-              </button>
-              <div className="bridge-banner" style={{ marginTop: 0 }}>
-                {connectionLabel
-                  ? `Connected: ${connectionLabel} · Proton (XPR)`
-                  : "Connect your Proton (XPR) wallet to stake WON."}
-                {session && (
-                  <button type="button" className="bridge-ghost" onClick={disconnectWallet}>
-                    Disconnect
-                  </button>
-                )}
+                {regions.map((region) => (
+                  <option key={region.id} value={region.id}>
+                    {region.name}
+                  </option>
+                ))}
+              </select>
+              <p className="bridge-muted">Priority updates every 24 hours as stakes move.</p>
+            </div>
+          </div>
+
+          <div className="bridge-input-row" style={{ marginTop: 10 }}>
+            <button
+              className="bridge-primary"
+              type="button"
+              onClick={handleStake}
+              disabled={stakeStatus === "signing" || isConnecting}
+            >
+              {session ? "Stake WON" : isConnecting ? "Connecting..." : "Connect Proton wallet"}
+            </button>
+            <div className="bridge-banner" style={{ marginTop: 0 }}>
+              {connectionLabel
+                ? `Connected: ${connectionLabel} · Proton (XPR)`
+                : "Connect your Proton (XPR) wallet (Anchor or Cloud Wallet) to stake WON."}
+              {session && (
+                <button type="button" className="bridge-ghost" onClick={disconnectWallet}>
+                  Disconnect
+                </button>
+              )}
               </div>
             </div>
 
