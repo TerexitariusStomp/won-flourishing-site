@@ -85,7 +85,7 @@ const STAKING_VAULT_ACCOUNT = (import.meta.env.VITE_WON_STAKING_ACCOUNT ?? "").t
 const WON_TOKEN_CONTRACT = (import.meta.env.VITE_WON_TOKEN_CONTRACT ?? "w3won").trim();
 const WON_TOKEN_SYMBOL = (import.meta.env.VITE_WON_TOKEN_SYMBOL ?? "WON").trim();
 const WON_TOKEN_DECIMALS = Number(import.meta.env.VITE_WON_TOKEN_DECIMALS ?? 4);
-const WHARFKIT_SESSION_KEY = "wharfkit-session";
+const WEBIO_SESSION_KEY = "webio-session";
 
 export default function StakePage() {
   const [location] = useLocation();
@@ -124,7 +124,7 @@ export default function StakePage() {
 
   useEffect(() => {
     const restoreSession = async () => {
-      const stored = localStorage.getItem(WHARFKIT_SESSION_KEY);
+      const stored = localStorage.getItem(WEBIO_SESSION_KEY);
       if (!stored) {
         return;
       }
@@ -134,8 +134,8 @@ export default function StakePage() {
           setSession(restored);
         }
       } catch (error) {
-        console.warn("Unable to restore Wharfkit session", error);
-        localStorage.removeItem(WHARFKIT_SESSION_KEY);
+        console.warn("Unable to restore Webio session", error);
+        localStorage.removeItem(WEBIO_SESSION_KEY);
       }
     };
 
@@ -160,10 +160,7 @@ export default function StakePage() {
     try {
       const loginResult = await sessionKit.login();
       setSession(loginResult.session);
-      localStorage.setItem(
-        WHARFKIT_SESSION_KEY,
-        JSON.stringify(loginResult.session.serialize())
-      );
+      localStorage.setItem(WEBIO_SESSION_KEY, JSON.stringify(loginResult.session.serialize()));
     } catch (error) {
       console.error(error);
       setStakeError("Unable to connect to your XPR wallet. Please try again.");
@@ -179,10 +176,10 @@ export default function StakePage() {
     try {
       await sessionKit.remove(session);
     } catch (error) {
-      console.warn("Unable to remove Wharfkit session", error);
+      console.warn("Unable to remove Webio session", error);
     }
     setSession(null);
-    localStorage.removeItem(WHARFKIT_SESSION_KEY);
+    localStorage.removeItem(WEBIO_SESSION_KEY);
   };
 
   const handleStake = async () => {
@@ -289,7 +286,7 @@ export default function StakePage() {
                   </button>
                 </div>
                 <p className="bridge-muted">
-                  Connect your XPR wallet via Wharfkit to stake WON. You keep custody of your WON and
+                  Connect your XPR wallet via Webio to stake WON. You keep custody of your WON and
                   can unstake at any time.
                 </p>
               </div>
